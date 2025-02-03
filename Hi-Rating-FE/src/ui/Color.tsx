@@ -13,6 +13,7 @@ const Color: Record<string, string> = {
   platinum: "#5EBC93",
   diamond: "25a7e0",
   ruby: "#e62d5f",
+  graySub3: "#5F6368",
 };
 
 export default Color;

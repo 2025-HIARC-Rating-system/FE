@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Color from "../ui/Color";
 import ArrowButton from "../atoms/ArrowButton";
+import DivNameTack from "./DivNameTack";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -17,12 +18,28 @@ const ButtonWrapper = styled.div`
   justify-content: center;
 `;
 
+const TackContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+`;
+
 const HitingBox = ({boxName}: {boxName: string}) => {
   return (
     <Wrapper>
       <ButtonWrapper>
         <ArrowButton ArrowString={boxName} />
       </ButtonWrapper>
+      <TackContainer>
+        <DivNameTack num={1} id={"ghwo336"} tier={4} increasedRating={434} />
+        <DivNameTack num={2} id={"ghwo336"} tier={4} increasedRating={434} />
+        <DivNameTack num={3} id={"ghwo336"} tier={4} increasedRating={434} />
+        <DivNameTack num={4} id={"ghwo336"} tier={4} increasedRating={434} />
+        <DivNameTack num={5} id={"hututi"} tier={4} increasedRating={2} />
+      </TackContainer>
     </Wrapper>
   );
 };

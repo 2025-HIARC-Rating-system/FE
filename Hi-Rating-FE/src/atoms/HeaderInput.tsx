@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Img from "./../assets/InputImg.png";
 import Color from "../ui/Color";
 const Wrapper = styled.div`
-  width: 40%;
+  width: 42%;
   display: flex;
   border: 1px solid ${Color.primary};
   border-radius: 18px;
@@ -11,6 +11,7 @@ const Wrapper = styled.div`
     border: none;
     outline: none;
     margin-left: 1px;
+    width: 80%;
   }
 
   img {

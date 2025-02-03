@@ -4,13 +4,14 @@ const Button = styled.button`
   display: flex;
   justify-content: space-between;
   flex-direction: space-between;
-  width: 95%;
+  width: 92%;
   background-color: #ffffff;
   border: none;
   border-radius: 20px;
-  min-height: 30px;
+  height: 40px;
   cursor: pointer;
   padding: 3px 15px;
+  align-items: center;
 `;
 
 const DivContainer = styled.div`

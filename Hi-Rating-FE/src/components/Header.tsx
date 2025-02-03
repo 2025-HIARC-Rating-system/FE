@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Color from "../ui/Color";
 import HeaderInput from "../atoms/HeaderInput";
+import {useNavigate} from "react-router-dom";
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
@@ -24,14 +25,19 @@ const Right = styled.div`
   gap: 10px;
   align-items: center;
 `;
+const HitingWrapper = styled.div`
+  cursor: pointer;
+  font-weight: 900;
+`;
 
 const Header = () => {
+  const navigate = useNavigate();
   return (
     <Wrapper>
       <HIARC href="https://hiarchomepage.web.app/">HI-ARC</HIARC>
       <Right>
         <HeaderInput />
-        하이팅 ☰
+        <HitingWrapper onClick={() => navigate("/")}>하이팅</HitingWrapper>
       </Right>
     </Wrapper>
   );

@@ -1,8 +1,7 @@
 import LayOut from "../ui/Layout";
-import HitingBox from "../components/HitingBox";
 import styled from "styled-components";
 import DivBlock from "../block/DivBlock";
-import StreakBox from "../components/StreakBox";
+import StreakBox from "../block/StreakBox";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
