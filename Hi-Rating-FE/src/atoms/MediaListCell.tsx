@@ -4,14 +4,14 @@ import Color from "../ui/Color";
 const ContactContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   gap: 6px;
   font-size: 12px;
   font-weight: 500;
   color: ${Color?.primary || "#42a5f5"};
 
-  width: 100%;
+  width: 25%;
   @media (max-width: 800px) {
     align-items: flex-start;
   }

@@ -34,11 +34,11 @@ const HitingBox = ({boxName}: {boxName: string}) => {
         <ArrowButton ArrowString={boxName} />
       </ButtonWrapper>
       <TackContainer>
-        <DivNameTack num={1} id={"ghwo336"} tier={4} increasedRating={434} />
-        <DivNameTack num={2} id={"ghwo336"} tier={4} increasedRating={434} />
-        <DivNameTack num={3} id={"ghwo336"} tier={4} increasedRating={434} />
-        <DivNameTack num={4} id={"ghwo336"} tier={4} increasedRating={434} />
-        <DivNameTack num={5} id={"hututi"} tier={4} increasedRating={2} />
+        <DivNameTack num={1} id={"ghwo336"} tier={31} increasedRating={434} />
+        <DivNameTack num={2} id={"ghwo336"} tier={31} increasedRating={434} />
+        <DivNameTack num={3} id={"ghwo336"} tier={31} increasedRating={434} />
+        <DivNameTack num={4} id={"brayden"} tier={12} increasedRating={200} />
+        <DivNameTack num={5} id={"hututi"} tier={0} increasedRating={2} />
       </TackContainer>
     </Wrapper>
   );

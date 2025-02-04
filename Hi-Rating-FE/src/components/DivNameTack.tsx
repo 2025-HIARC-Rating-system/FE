@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Img from "./../assets/tier.png";
+import TierImg from "../ui/TierImg";
 import Color from "../ui/Color";
 const Wrapper = styled.div<{$isUnderlined: boolean}>`
   padding-left: 5px;
@@ -14,21 +14,21 @@ const Wrapper = styled.div<{$isUnderlined: boolean}>`
 `;
 
 const Information = styled.div`
-  width: 70%;
   display: flex;
   justify-content: space-between;
+  width: 147px;
 `;
 
 const NumAndId = styled.div`
   width: 70%;
   display: flex;
-  justify-content: space-between;
+  gap: 32px;
 `;
 
 const DivNameTack = ({
   num,
   id,
-  tier,
+  tier = 31,
   increasedRating,
 }: {
   num: number;
@@ -43,7 +43,7 @@ const DivNameTack = ({
           <div>{num}</div>
           <div>{id}</div>
         </NumAndId>
-        <img src={Img} alt="" />
+        <TierImg tier={tier} />
       </Information>
       {increasedRating}
     </Wrapper>

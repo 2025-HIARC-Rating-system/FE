@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import CircularProgress from "../atoms/CircularProgress";
-import Img from "./../assets/tier.png";
 import Color from "../ui/Color";
+import Unrank from "./../assets/tierImg/31.svg";
 
 const Wrapper = styled.div`
   width: 25%;
@@ -18,6 +18,10 @@ const Up = styled.div`
   gap: 4%;
   padding: 5% 5% 2% 5%;
   border-bottom: 1px solid black;
+  img {
+    width: 19px;
+    height: 19px;
+  }
 `;
 const Down = styled.div`
   margin-top: 5px;
@@ -84,7 +88,7 @@ const IndividualBlock = ({
   return (
     <Wrapper>
       <Up>
-        <img src={Img} alt="" />
+        <img src={Unrank} alt="" />
         {id}
         <div>|</div>
         <div>div {div}</div>
