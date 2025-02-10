@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import {useNavigate} from "react-router-dom";
 const Button = styled.button`
   display: flex;
   justify-content: space-between;
@@ -22,16 +22,14 @@ const ArrowContainer = styled.div`
   font-size: 20px;
 `;
 
-const ArrowButton = ({
-  ArrowString,
-  onClick,
-}: {
-  ArrowString: string;
-  onClick: () => void;
-}) => {
+const ArrowButton = ({divNum}: {divNum: number}) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/div?num=${divNum}`);
+  };
   return (
-    <Button onClick={onClick}>
-      <DivContainer>{ArrowString}</DivContainer>
+    <Button onClick={handleClick}>
+      <DivContainer>div{divNum}</DivContainer>
       <ArrowContainer>{">"}</ArrowContainer>
     </Button>
   );

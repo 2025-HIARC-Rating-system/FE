@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import CircularProgress from "../atoms/CircularProgress";
 import Color from "../ui/Color";
-import Unrank from "./../assets/tierImg/31.svg";
+import TierImg from "../ui/TierImg";
 
 const Wrapper = styled.div`
   width: 25%;
@@ -71,8 +71,8 @@ const Days = styled.div`
 `;
 
 const IndividualBlock = ({
-  tier = 1,
-  id = "ghwo336",
+  tier = 0,
+  id = "ghwo36",
   div = 1,
   value = 23,
   maxValue = 30,
@@ -88,7 +88,7 @@ const IndividualBlock = ({
   return (
     <Wrapper>
       <Up>
-        <img src={Unrank} alt="" />
+        <TierImg tier={tier} />
         {id}
         <div>|</div>
         <div>div {div}</div>

@@ -10,9 +10,9 @@ const Wrapper = styled.div`
 const DivBlock = () => {
   return (
     <Wrapper>
-      <HitingBox boxName="div1"></HitingBox>
-      <HitingBox boxName="div2"></HitingBox>
-      <HitingBox boxName="div3"></HitingBox>
+      <HitingBox divNum={1}></HitingBox>
+      <HitingBox divNum={2}></HitingBox>
+      <HitingBox divNum={3}></HitingBox>
     </Wrapper>
   );
 };

@@ -7,8 +7,8 @@ const LayoutWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-content: center;
-  width: 100%;
-  max-width: 1248px;
+
+  width: 1000px;
   margin: 0 auto;
   /* margin-left: 20%;
   margin-right: 20%; */

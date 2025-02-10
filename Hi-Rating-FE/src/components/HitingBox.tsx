@@ -27,11 +27,11 @@ const TackContainer = styled.div`
   padding-top: 20px;
 `;
 
-const HitingBox = ({boxName}: {boxName: string}) => {
+const HitingBox = ({divNum}: {divNum: number}) => {
   return (
     <Wrapper>
       <ButtonWrapper>
-        <ArrowButton ArrowString={boxName} />
+        <ArrowButton divNum={divNum} />
       </ButtonWrapper>
       <TackContainer>
         <DivNameTack num={1} id={"ghwo336"} tier={31} increasedRating={434} />

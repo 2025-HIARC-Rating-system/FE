@@ -30,10 +30,10 @@ const MainPage = () => {
   return (
     <LayOut>
       <Wrapper>
-        <AnimatedContainer delay="0.3s">
+        <AnimatedContainer delay="0.1s">
           <DivBlock />
         </AnimatedContainer>
-        <AnimatedContainer delay="0.6s">
+        <AnimatedContainer delay="0.2s">
           <StreakBox />
         </AnimatedContainer>
       </Wrapper>

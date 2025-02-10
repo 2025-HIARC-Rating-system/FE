@@ -3,7 +3,7 @@ import Color from "../ui/Color";
 import ArrowButton from "../atoms/ArrowButton";
 import IndividualBlock from "../components/IndividualBlock";
 const Wrapper = styled.div`
-  width: 930px;
+  width: 75%;
   border-radius: 28px;
   background-color: ${Color.skybox};
   min-height: 354px;
@@ -37,7 +37,7 @@ const StreakBox = () => {
         <ArrowButton ArrowString="streak" />
       </ButtonWrapper>
       <Individuals>
-        <IndividualBlock />
+        <IndividualBlock tier={4} id="ghwo33" />
         <IndividualBlock />
         <IndividualBlock />
         <IndividualBlock />
