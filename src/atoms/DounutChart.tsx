@@ -22,20 +22,12 @@ const SvgContainer = styled.div`
   width: 100%;
 `;
 
-const PercentageText = styled.text`
-  font-weight: bold;
-  fill: black;
-  text-anchor: middle;
-  dominant-baseline: middle;
-`;
-
 const Description = styled.div`
-  margin-top: 10px;
+  margin-top: 20px;
   font-size: 14px;
   font-weight: 500;
   color: black;
   text-align: center;
-  margin-top: 20px;
 `;
 
 interface DonutChartProps {
@@ -106,14 +98,23 @@ const DonutChart: React.FC<DonutChartProps> = ({
             transform={`rotate(-90 ${size / 2} ${size / 2})`} // ✅ 시작 위치 조정
           />
           {/* ✅ 중앙 텍스트 (숫자는 크고, % 기호는 더 아래로 이동) */}
-          <PercentageText x="50%" y="50%">
+          <text
+            x="50%"
+            y="50%"
+            style={{
+              fontWeight: "bold",
+              fill: "black",
+              textAnchor: "middle",
+              dominantBaseline: "middle",
+            }}
+          >
             <tspan fontSize="45px">{animatedValue}</tspan>{" "}
             {/* ✅ 애니메이션 적용된 숫자 */}
-            <tspan fontSize="12px" dx="-5px" dy="10px" text-anchor="start">
+            <tspan fontSize="12px" dx="4px" dy="-10px">
               %
             </tspan>{" "}
-            {/* ✅ % 기호를 더 왼쪽 & 아래로 이동 */}
-          </PercentageText>
+            {/* ✅ % 기호를 오른쪽 위로 이동 */}
+          </text>
         </svg>
       </SvgContainer>
       {/* ✅ 하단 설명 텍스트 */}
