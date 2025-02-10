@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Color from "../ui/Color";
-import ArrowButton from "../atoms/ArrowButton";
 import IndividualBlock from "../components/IndividualBlock";
 const Wrapper = styled.div`
   width: 75%;
@@ -33,16 +32,56 @@ const Individuals = styled.div`
 const StreakBox = () => {
   return (
     <Wrapper>
-      <ButtonWrapper>
-        <ArrowButton ArrowString="streak" />
-      </ButtonWrapper>
+      <ButtonWrapper></ButtonWrapper>
       <Individuals>
-        <IndividualBlock tier={4} id="ghwo33" />
-        <IndividualBlock />
-        <IndividualBlock />
-        <IndividualBlock />
-        <IndividualBlock />
-        <IndividualBlock />
+        <IndividualBlock
+          tier={27}
+          id="ghwo336"
+          div={1}
+          value={50}
+          maxValue={80}
+          days={30}
+        />
+        <IndividualBlock
+          tier={24}
+          id="hututi"
+          div={1}
+          value={40}
+          maxValue={80}
+          days={30}
+        />
+        <IndividualBlock
+          tier={12}
+          id="brayden"
+          div={1}
+          value={30}
+          maxValue={80}
+          days={30}
+        />
+        <IndividualBlock
+          tier={30}
+          id="hi-arc"
+          div={1}
+          value={20}
+          maxValue={80}
+          days={30}
+        />
+        <IndividualBlock
+          tier={1}
+          id="pizza"
+          div={1}
+          value={80}
+          maxValue={80}
+          days={30}
+        />
+        <IndividualBlock
+          tier={0}
+          id="how are you"
+          div={1}
+          value={0}
+          maxValue={80}
+          days={30}
+        />
       </Individuals>
     </Wrapper>
   );
