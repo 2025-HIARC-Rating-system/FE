@@ -10,14 +10,12 @@ const ProgressWrapper = styled.div`
 
 const CircleBackground = styled.circle`
   fill: none;
-  stroke: #e0e0e0;
-  stroke-width: 6;
+  stroke: #edf8fd;
 `;
 
-const CircleProgress = styled.circle`
+const CircleProgress = styled.circle<{strokeColor?: string}>`
   fill: none;
-  stroke: ${Color.primary};
-  stroke-width: 6;
+  stroke: ${({strokeColor}) => strokeColor || Color.primary};
   stroke-linecap: round;
   transition: stroke-dashoffset 0.5s ease-in-out;
   transform: rotate(-90deg);
@@ -30,36 +28,57 @@ const ProgressText = styled.text`
   text-anchor: middle;
 `;
 
-const CircularProgress = ({
-  value,
-  maxValue,
-}: {
+interface CircularProgressProps {
   value: number;
   maxValue: number;
+  width?: number;
+  height?: number;
+  strokeColor?: string;
+}
+
+const CircularProgress: React.FC<CircularProgressProps> = ({
+  value,
+  maxValue,
+  width = 48,
+  height = 48,
+  strokeColor,
 }) => {
-  const radius = 15;
+  const size = Math.min(width, height); // ✅ width, height 중 작은 값 사용
+  const strokeWidth = size * 0.15; // ✅ 원 크기에 맞게 `stroke-width` 동적 설정
+  const radius = size / 2 - strokeWidth / 2; // ✅ 원이 잘리지 않도록 반지름 조정
   const circumference = 2 * Math.PI * radius;
   const percent = (value / maxValue) * 100;
   const dashOffset = circumference - (percent / 100) * circumference;
 
   return (
-    <ProgressWrapper>
-      <svg width="48" height="48" viewBox="0 0 40 40">
-        <CircleBackground cx="20" cy="20" r={radius} />
+    <ProgressWrapper style={{width: size, height: size}}>
+      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
+        {/* ✅ 배경 원 */}
+        <CircleBackground
+          cx={size / 2}
+          cy={size / 2}
+          r={radius}
+          strokeWidth={strokeWidth}
+        />
+        {/* ✅ 진행 원 */}
         <CircleProgress
-          cx="20"
-          cy="20"
+          cx={size / 2}
+          cy={size / 2}
           r={radius}
           strokeDasharray={circumference}
           strokeDashoffset={dashOffset}
+          strokeWidth={strokeWidth}
+          strokeColor={strokeColor}
         />
 
-        {/* ✅ Value 부분만 크고 굵게 */}
-        <ProgressText x="20" y="22">
-          <tspan fontSize="9px" fontWeight="bold" dy="1px">
+        {/* ✅ 중앙 텍스트 */}
+        <ProgressText x="50%" y="52%" dy="3%">
+          <tspan fontSize={`${size * 0.23}px`} fontWeight="bold">
             {value}
           </tspan>
-          <tspan fontSize="6px">/{maxValue}</tspan>
+          <tspan fontSize={`${size * 0.12}px`} dx="2px">
+            /{maxValue}
+          </tspan>
         </ProgressText>
       </svg>
     </ProgressWrapper>
