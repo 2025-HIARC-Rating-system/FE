@@ -31,7 +31,7 @@ const AnimatedContainer = styled.div<{animate: boolean}>`
 const HeadWrapper = styled.div`
   font-size: 35px;
   font-weight: 900;
-  padding-top: 45px;
+
   padding-bottom: 20px;
 `;
 
