@@ -2,6 +2,7 @@ import LayOut from "../ui/Layout";
 import styled, {keyframes} from "styled-components";
 import DivBlock from "../block/DivBlock";
 import StreakBox from "../block/StreakBox";
+import EventBlock from "../block/EventBolock";
 
 const fadeIn = keyframes`
   from {
@@ -14,10 +15,10 @@ const fadeIn = keyframes`
   }
 `;
 
-const AnimatedContainer = styled.div<{delay?: string}>`
+const AnimatedContainer = styled.div<{$delay?: string}>`
   opacity: 0;
   animation: ${fadeIn} 1s ease-in-out forwards;
-  animation-delay: ${(props) => props.delay || "0s"};
+  animation-delay: ${(props) => props.$delay || "0s"};
 `;
 
 const Wrapper = styled.div`
@@ -25,16 +26,28 @@ const Wrapper = styled.div`
   flex-direction: column;
   gap: 24px;
 `;
+const MainHeader = styled.div`
+  font-size: 35px;
+  font-weight: 800;
+`;
+const Down = styled.div`
+  display: flex;
+  gap: 20px;
+`;
 
 const MainPage = () => {
   return (
     <LayOut>
       <Wrapper>
-        <AnimatedContainer delay="0.1s">
+        <MainHeader>Hiting</MainHeader>
+        <AnimatedContainer $delay="0.1s">
           <DivBlock />
         </AnimatedContainer>
-        <AnimatedContainer delay="0.2s">
-          <StreakBox />
+        <AnimatedContainer $delay="0.2s">
+          <Down>
+            <StreakBox />
+            <EventBlock />
+          </Down>
         </AnimatedContainer>
       </Wrapper>
     </LayOut>

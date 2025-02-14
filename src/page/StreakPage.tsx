@@ -12,10 +12,10 @@ const fadeIn = keyframes`
     transform: translateY(0);
   }
 `;
-const AnimatedContainer = styled.div<{delay?: string}>`
+const AnimatedContainer = styled.div<{$delay?: string}>`
   opacity: 0;
   animation: ${fadeIn} 1s ease-in-out forwards;
-  animation-delay: ${(props) => props.delay || "0s"};
+  animation-delay: ${(props) => props.$delay || "0s"};
 `;
 
 const HeadWrapper = styled.div`
@@ -42,7 +42,7 @@ const StreakPage = () => {
     <LayOut>
       <Wrapper>
         <HeadWrapper>Streak</HeadWrapper>
-        <AnimatedContainer delay="0.2s">
+        <AnimatedContainer $delay="0.2s">
           <MainWrapper>
             <StreakEntity
               value={15}

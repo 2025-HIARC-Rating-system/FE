@@ -11,6 +11,7 @@ const Wrapper = styled.div<{$isUnderlined: boolean}>`
   justify-content: space-between;
   align-items: center;
   font-size: 14px;
+  font-weight: 400;
 `;
 
 const Information = styled.div`

@@ -1,14 +1,17 @@
 import styled from "styled-components";
 import {useState} from "react";
+import {useAtom} from "jotai";
+import {useNavigate} from "react-router-dom"; // 🚀 useNavigate 추가
+import {handleAtom} from "../store/Atom"; // Jotai 상태 불러오기
 import Img from "./../assets/InputImg.png";
 import Color from "../ui/Color";
 
 const Wrapper = styled.div`
-  width: 42%;
+  width: 339px;
   display: flex;
-  border: 1px solid ${Color.primary};
+  border: 1px solid ${Color.primary}; // ✅ props 없이 직접 사용
   border-radius: 18px;
-  padding: 5px 15px;
+  height: 34px;
   align-items: center;
 
   .Input {
@@ -23,34 +26,37 @@ const Wrapper = styled.div`
     cursor: pointer;
     width: 20px;
     height: 20px;
+    margin-left: 21px;
   }
 `;
 
 const HeaderInput = () => {
-  const [handle, setHandle] = useState(""); // ✅ 입력값 상태 관리
+  const [, setHandle] = useAtom(handleAtom);
+  const [inputValue, setInputValue] = useState("");
+  const navigate = useNavigate();
 
-  const handleSearch = () => {
-    if (handle.trim() !== "") {
-      window.location.href = `https://solved.ac/profile/${handle.trim()}`;
-    }
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      handleSearch();
+  const handleSearch = () => {
+    if (inputValue.trim() !== "") {
+      setHandle(inputValue);
+      console.log("🔍 검색 실행:", inputValue);
+      navigate(`/search?handle=${inputValue}`);
     }
   };
 
   return (
     <Wrapper>
-      <img src={Img} alt="인풋이미지" onClick={handleSearch} />
+      <img src={Img} alt="검색 아이콘" onClick={handleSearch} />
       <input
         type="text"
         placeholder="백준 핸들 검색"
         className="Input"
-        value={handle}
-        onChange={(e) => setHandle(e.target.value)}
-        onKeyPress={handleKeyPress} // ✅ Enter 키로 검색 가능
+        value={inputValue}
+        onChange={handleInputChange}
+        onKeyDown={(e) => e.key === "Enter" && handleSearch()}
       />
     </Wrapper>
   );
