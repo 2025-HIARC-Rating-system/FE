@@ -22,9 +22,9 @@ const fadeIn = keyframes`
 `;
 
 // ✅ 애니메이션이 적용된 컨테이너
-const AnimatedContainer = styled.div<{animate: boolean}>`
+const AnimatedContainer = styled.div<{$animate: boolean}>`
   opacity: 0;
-  animation: ${({animate}) => (animate ? fadeIn : "none")} 0.2s ease-in-out
+  animation: ${({$animate}) => ($animate ? fadeIn : "none")} 0.2s ease-in-out
     forwards;
 `;
 
@@ -72,7 +72,7 @@ const DivPage = () => {
 
       {/* ✅ 애니메이션 컨테이너 추가 */}
       <MainWrapper>
-        <AnimatedContainer animate={animate} key={selected}>
+        <AnimatedContainer $animate={animate} key={selected}>
           <RankingContainer selected={selected} />
         </AnimatedContainer>
         <DonutChart

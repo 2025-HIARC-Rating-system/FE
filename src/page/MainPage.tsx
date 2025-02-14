@@ -15,10 +15,10 @@ const fadeIn = keyframes`
   }
 `;
 
-const AnimatedContainer = styled.div<{delay?: string}>`
+const AnimatedContainer = styled.div<{$delay?: string}>`
   opacity: 0;
   animation: ${fadeIn} 1s ease-in-out forwards;
-  animation-delay: ${(props) => props.delay || "0s"};
+  animation-delay: ${(props) => props.$delay || "0s"};
 `;
 
 const Wrapper = styled.div`
@@ -40,10 +40,10 @@ const MainPage = () => {
     <LayOut>
       <Wrapper>
         <MainHeader>Hiting</MainHeader>
-        <AnimatedContainer delay="0.1s">
+        <AnimatedContainer $delay="0.1s">
           <DivBlock />
         </AnimatedContainer>
-        <AnimatedContainer delay="0.2s">
+        <AnimatedContainer $delay="0.2s">
           <Down>
             <StreakBox />
             <EventBlock />
