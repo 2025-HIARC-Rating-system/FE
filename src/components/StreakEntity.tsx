@@ -79,6 +79,9 @@ const StreakBox = styled.div`
 
   border-radius: 2px;
 `;
+const Up = styled.div`
+  border-bottom: px solid ${Color.primary};
+`;
 
 const StreakEntity = ({
   value,
@@ -108,7 +111,9 @@ const StreakEntity = ({
   };
   return (
     <Wrapper>
-      <InfoEntity id={id} divNum={divNum} tier={tier} />
+      <Up>
+        <InfoEntity id={id} divNum={divNum} tier={tier} />
+      </Up>
       <DownWrapper>
         <Left>
           <Border $borderColor={Color.graySub3}>이번 시즌</Border>
