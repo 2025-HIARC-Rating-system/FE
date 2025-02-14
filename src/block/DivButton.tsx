@@ -2,13 +2,14 @@ import styled from "styled-components";
 import Color from "../ui/Color";
 
 const Wrapper = styled.button<{$isSelected: boolean}>`
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   width: 58px;
   height: 25px;
   border-radius: 18px;
   border: none;
   padding: 6px 14px;
+  white-space: nowrap; /* ⬅️ 줄바꿈 방지 */
   color: ${({$isSelected}) => ($isSelected ? Color.primary : "white")};
   background-color: ${({$isSelected}) =>
     $isSelected ? "white" : Color.primary};

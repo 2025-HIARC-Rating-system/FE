@@ -29,7 +29,7 @@ const ArrowButton = ({divNum}: {divNum: number}) => {
   };
   return (
     <Button onClick={handleClick}>
-      <DivContainer>div{divNum}</DivContainer>
+      <DivContainer>Div{divNum}</DivContainer>
       <ArrowContainer>{">"}</ArrowContainer>
     </Button>
   );

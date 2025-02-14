@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Color from "../ui/Color";
 import HeaderInput from "../atoms/HeaderInput";
 import {useNavigate} from "react-router-dom";
+import Home from "../assets/Home.svg";
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
@@ -37,7 +38,9 @@ const Header = () => {
       <HIARC href="https://hiarchomepage.web.app/">HI-ARC</HIARC>
       <Right>
         <HeaderInput />
-        <HitingWrapper onClick={() => navigate("/")}>하이팅</HitingWrapper>
+        <HitingWrapper onClick={() => navigate("/")}>
+          <img src={Home} alt="home" />
+        </HitingWrapper>
       </Right>
     </Wrapper>
   );
