@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Img from "../assets/eventImg.png";
+import Img from "../assets/evenImg2.svg";
 const Button = styled.div`
   width: 194px;
   height: 19px;

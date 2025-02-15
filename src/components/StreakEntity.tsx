@@ -12,9 +12,6 @@ const DownWrapper = styled.div`
   margin-top: 16px;
   display: flex;
   gap: 24.33px;
-  border: 1px solid ${Color.primary};
-  border-radius: 10px;
-  padding: 10px;
 `;
 const Left = styled.div`
   width: 63px;
@@ -39,7 +36,7 @@ const Border = styled.div<{$borderColor: string}>`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 3.5px 8px;
+  padding: 0px 8px;
   flex-wrap: nowrap;
   margin-bottom: 3px;
   height: 20px;
@@ -80,7 +77,15 @@ const StreakBox = styled.div`
   border-radius: 2px;
 `;
 const Up = styled.div`
-  border-bottom: px solid ${Color.primary};
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+`;
+const Devider = styled.div`
+  width: 97%;
+  border-bottom: 1px solid ${Color.primary};
+  margin-top: -1px; /* ✅ 위 border와 겹쳐서 하나처럼 보이게 조정 */
+  margin-left: 12px;
 `;
 
 const StreakEntity = ({
@@ -113,6 +118,7 @@ const StreakEntity = ({
     <Wrapper>
       <Up>
         <InfoEntity id={id} divNum={divNum} tier={tier} />
+        <Devider></Devider>
       </Up>
       <DownWrapper>
         <Left>

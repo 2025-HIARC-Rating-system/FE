@@ -37,7 +37,7 @@ const Border = styled.div<{borderColor: string}>`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 3.5px 8px;
+  padding: 0px 8px;
   flex-wrap: nowrap;
   margin-bottom: 3px;
   height: 20px;
@@ -62,6 +62,9 @@ const Days = styled.div`
   gap: 2px;
   .big {
     font-size: 35px;
+  }
+  .small {
+    margin-bottom: 5px;
   }
 `;
 
@@ -92,7 +95,7 @@ const IndividualBlock = ({
         </Borders>
         <Days>
           <div className="big">{days}</div>
-          <div>일</div>
+          <div className="small">일</div>
         </Days>
       </Down>
     </Wrapper>

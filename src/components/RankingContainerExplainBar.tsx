@@ -8,28 +8,26 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   border-bottom: 1px solid ${Color.graySub3};
+  color: ${Color.graySub3};
 `;
 const Ranking = styled.div`
+  width: 41.29px;
   margin-left: 32px;
-  margin-right: 32px;
 `;
 const Handle = styled.div`
-  margin-right: 132px;
+  width: 180px;
 `;
 
 const Tier = styled.div`
-  margin-right: 186px;
+  width: 200px;
 `;
 const Event = styled.div`
-  width: 37px;
-  margin-right: 40px;
+  width: 77px;
 `;
 const Today = styled.div`
-  margin-right: 45px;
+  width: 77px;
 `;
-const Total = styled.div`
-  width: 30px;
-`;
+const Total = styled.div``;
 
 const RankingContainerExplainBar = () => {
   return (
