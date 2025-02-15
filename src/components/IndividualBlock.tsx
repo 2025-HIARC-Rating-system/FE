@@ -9,6 +9,12 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 16px;
+  min-width: 224px;
+  /* ✅ 480px 이하일 때 width를 284px로 변경 */
+  @media (max-width: 480px) {
+    width: 284px;
+    min-width: 284px;
+  }
 `;
 
 const Up = styled.div`
