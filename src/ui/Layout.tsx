@@ -8,7 +8,6 @@ const LayoutWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between; /* ✅ Footer가 하단에 붙도록 설정 */
   align-items: center;
-
   width: 1000px;
   min-height: 100vh; /* ✅ 최소 높이를 화면 전체 높이로 설정 */
   margin: 0 auto;

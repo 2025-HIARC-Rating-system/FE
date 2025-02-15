@@ -45,6 +45,12 @@ const MainWrapper = styled.div`
   gap: 26px;
 `;
 
+const Right = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20.65px;
+`;
+
 const DivPage = () => {
   const [selected, setSelected] = useAtom(selectedDiv);
   const [animate, setAnimate] = useState(false);
@@ -75,11 +81,13 @@ const DivPage = () => {
         <AnimatedContainer $animate={animate} key={selected}>
           <RankingContainer selected={selected} />
         </AnimatedContainer>
-        <DonutChart
-          value={mockPercent[selected]}
-          div={selected}
-          duration={mockPercent[selected] * 20}
-        />
+        <Right>
+          <DonutChart
+            value={mockPercent[selected]}
+            div={selected}
+            duration={mockPercent[selected] * 20}
+          />
+        </Right>
       </MainWrapper>
     </LayOut>
   );

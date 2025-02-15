@@ -22,7 +22,7 @@ const HeadWrapper = styled.div`
   font-size: 35px;
   font-weight: 900;
 
-  padding-bottom: 20px;
+  padding-bottom: 24px;
 `;
 
 const MainWrapper = styled.div`

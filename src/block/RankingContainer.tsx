@@ -2,6 +2,7 @@ import styled from "styled-components";
 import RankingContainerExplainBar from "../components/RankingContainerExplainBar";
 import RankingEntity from "../components/RankingEntity";
 import mockData from "../ui/MockData";
+import Color from "../ui/Color";
 
 const Wrapper = styled.div`
   width: 673px;

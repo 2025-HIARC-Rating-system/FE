@@ -4,8 +4,8 @@ import Color from "../ui/Color"; // ✅ 기본 색상 관리 파일
 
 // ✅ 스타일 지정
 const ChartWrapper = styled.div`
-  width: 302px; /* ✅ 전체 컨테이너 크기 변경 */
-  height: 261px;
+  width: 282px; /* ✅ 전체 컨테이너 크기 변경 */
+  height: 241px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -99,7 +99,7 @@ const DonutChart: React.FC<DonutChartProps> = ({
           />
           {/* ✅ 중앙 텍스트 (숫자는 크고, % 기호는 더 아래로 이동) */}
           <text
-            x="50%"
+            x="53%"
             y="50%"
             style={{
               fontWeight: "bold",
@@ -110,7 +110,7 @@ const DonutChart: React.FC<DonutChartProps> = ({
           >
             <tspan fontSize="45px">{animatedValue}</tspan>{" "}
             {/* ✅ 애니메이션 적용된 숫자 */}
-            <tspan fontSize="12px" dx="4px" dy="-10px">
+            <tspan fontSize="12px" dx="0px" dy="7px">
               %
             </tspan>{" "}
             {/* ✅ % 기호를 오른쪽 위로 이동 */}

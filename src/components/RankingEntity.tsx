@@ -12,32 +12,31 @@ const Wrapper = styled.div`
   border-bottom: 1px solid ${Color.graySub3};
 `;
 const Ranking = styled.div`
+  width: 41.29px;
   margin-left: 32px;
-  margin-right: 32px;
-  width: 11.17px;
 `;
 const Handle = styled.div`
   width: 180px;
 `;
 
 const Tier = styled.div`
-  margin-right: 190px;
+  width: 200px;
 `;
 const Event = styled.div`
-  width: 27px;
-  margin-right: 48px;
+  width: 77px;
 `;
 const Today = styled.div`
-  width: 53px;
-  margin-right: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 77px;
+  .letter {
+    width: 53px;
+    display: flex;
+    justify-content: center;
+  }
 `;
 const Total = styled.div`
+  width: 29px;
   display: flex;
   justify-content: center;
-  width: 27px;
 `;
 
 const RankingEntity = ({
@@ -63,7 +62,9 @@ const RankingEntity = ({
         <TierImg tier={tier} />
       </Tier>
       <Event>{event && <img src={EventImg} />}</Event>
-      <Today>{today}</Today>
+      <Today>
+        <div className="letter">{today}</div>
+      </Today>
       <Total>{total}</Total>
     </Wrapper>
   );
