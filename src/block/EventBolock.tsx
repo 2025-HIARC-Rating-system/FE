@@ -11,6 +11,9 @@ const Wrapper = styled.div`
   align-items: center;
   flex-direction: column;
   gap: 22.6px;
+  @media (max-width: 480px) {
+    width: 320px;
+  }
 `;
 const ButtonContainer = styled.div`
   margin-top: 15.18px;

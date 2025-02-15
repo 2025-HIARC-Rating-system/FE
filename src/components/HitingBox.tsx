@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 32%;
+  width: 320px;
   border-radius: 28px;
   background-color: ${Color.skybox};
   min-height: 300px;

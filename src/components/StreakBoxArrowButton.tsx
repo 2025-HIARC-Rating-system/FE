@@ -16,6 +16,9 @@ const Wrapper = styled.div`
   .right {
     margin-right: 13px;
   }
+  @media (max-width: 480px) {
+    width: 284px;
+  }
 `;
 
 const StreakBoxArrowButton = () => {
