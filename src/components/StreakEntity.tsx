@@ -64,15 +64,15 @@ const Days = styled.div`
 // ✅ 🔹 추가: 스트릭 네모 박스 스타일
 const StreakGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(20, 10px); /* ✅ 한 줄에 최대 20개 */
+  grid-template-columns: repeat(20, 13px); /* ✅ 한 줄에 최대 20개 */
   gap: 1px;
   width: fit-content; /* ✅ 박스 개수에 맞춰 너비 자동 조정 */
   max-width: 273px; /* ✅ 최대 너비 설정 */
   height: fit-content;
 `;
 const StreakBox = styled.div`
-  width: 10px;
-  height: 10px;
+  width: 13px;
+  height: 13px;
 
   border-radius: 2px;
 `;
@@ -82,7 +82,7 @@ const Up = styled.div`
   flex-direction: column;
 `;
 const Devider = styled.div`
-  width: 97%;
+  width: 98%;
   border-bottom: 1px solid ${Color.primary};
   margin-top: -1px; /* ✅ 위 border와 겹쳐서 하나처럼 보이게 조정 */
   margin-left: 12px;
