@@ -30,9 +30,9 @@ const Down = styled.div`
   align-items: center;
 `;
 
-const Border = styled.div<{borderColor: string}>`
+const Border = styled.div<{$borderColor: string}>`
   font-size: 12px;
-  border: 0.5px solid ${(props) => props.borderColor};
+  border: 0.5px solid ${(props) => props.$borderColor};
   border-radius: 10px;
   display: flex;
   justify-content: center;
@@ -90,8 +90,8 @@ const IndividualBlock = ({
       </Up>
       <Down>
         <Borders>
-          <Border borderColor={Color.graySub3}>누적</Border>
-          <Border borderColor={Color.primary}>2025.02.03 부터</Border>
+          <Border $borderColor={Color.graySub3}>누적</Border>
+          <Border $borderColor={Color.primary}>2025.02.03 부터</Border>
         </Borders>
         <Days>
           <div className="big">{days}</div>

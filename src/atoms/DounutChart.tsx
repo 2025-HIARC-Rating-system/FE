@@ -102,7 +102,7 @@ const DonutChart: React.FC<DonutChartProps> = ({
             x="53%"
             y="50%"
             style={{
-              fontWeight: "bold",
+              fontWeight: 700,
               fill: "black",
               textAnchor: "middle",
               dominantBaseline: "middle",

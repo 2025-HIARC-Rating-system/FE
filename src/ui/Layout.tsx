@@ -11,6 +11,10 @@ const LayoutWrapper = styled.div`
   width: 1000px;
   min-height: 100vh; /* ✅ 최소 높이를 화면 전체 높이로 설정 */
   margin: 0 auto;
+
+  @media (max-width: 480px) {
+    width: 375px;
+  }
 `;
 
 const ContentWrapper = styled.div`
