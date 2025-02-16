@@ -1,38 +1,36 @@
 import HitingBox from "../components/HitingBox";
 import styled from "styled-components";
-import {useRef, useState} from "react";
+import {useRef, useState, useEffect} from "react";
+import Color from "../ui/Color";
 
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start; /* ✅ 기본적으로 왼쪽 정렬 유지 */
 
-  /* ✅ 480px 이하일 때 가로 스크롤 적용 */
+  /* ✅ 모바일(480px 이하)에서는 인디케이터 중앙 정렬 */
   @media (max-width: 480px) {
-    overflow-x: auto; /* 가로 스크롤 활성화 */
-    scroll-snap-type: x mandatory; /* 스냅 스크롤 */
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 20px; /* ✅ 간격 20px 적용 */
-    padding: 10px;
+    align-items: center;
   }
 `;
 
 const ScrollContainer = styled.div`
   display: flex;
-  gap: 20px; /* ✅ 각 요소 사이 간격 20px 적용 */
+  gap: 20px;
+  justify-content: flex-start;
+  width: 100%; /* ✅ 스크롤 가능하도록 full-width 설정 */
 
-  /* ✅ 480px 이하일 때 터치 스크롤 */
+  /* ✅ 480px 이하일 때 터치 스크롤 정상 동작 */
   @media (max-width: 480px) {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: scroll;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
-    scrollbar-width: none; /* 파이어폭스 스크롤바 제거 */
-    -ms-overflow-style: none; /* IE/Edge 스크롤바 제거 */
+    scrollbar-width: none; /* ✅ 파이어폭스 스크롤바 제거 */
+    -ms-overflow-style: none; /* ✅ IE/Edge 스크롤바 제거 */
   }
 
-  /* 크롬, 사파리 스크롤바 숨기기 */
+  /* ✅ 크롬, 사파리 스크롤바 숨기기 */
   &::-webkit-scrollbar {
     display: none;
   }
@@ -40,55 +38,69 @@ const ScrollContainer = styled.div`
 
 const HitingBoxWrapper = styled.div`
   flex: 0 0 auto;
-  scroll-snap-align: start; /* 스냅 위치 설정 */
+  scroll-snap-align: center;
   width: 80%;
-  max-width: 300px; /* ✅ 각 박스 크기 제한 */
-  margin-right: 20px; /* ✅ 요소 사이 간격 20px 적용 */
+  max-width: 300px;
+  margin-right: 20px;
 
   @media (max-width: 480px) {
-    width: 100%; /* 전체 너비 차지 */
+    width: 100%;
   }
 
-  /* 마지막 요소에는 margin-right 제거 */
   &:last-child {
     margin-right: 0;
   }
 `;
 
+/* ✅ 인디케이터 스타일 (모바일에서만 보이도록 설정) */
+const IndicatorContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+
+  /* ✅ PC(480px 초과)에서는 숨김 */
+  @media (min-width: 481px) {
+    display: none;
+  }
+`;
+
+const Indicator = styled.div<{$active: boolean}>`
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: ${({$active}) =>
+    $active ? Color.primary : "#d3d3d3"}; /* ✅ 활성화된 점은 파란색 */
+  transition: background-color 0.3s ease;
+`;
+
 const DivBlock = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const handleMouseDown = (e: React.MouseEvent) => {
+  const handleScroll = () => {
     if (!scrollRef.current) return;
-    setIsDragging(true);
-    setStartX(e.pageX - scrollRef.current.offsetLeft);
-    setScrollLeft(scrollRef.current.scrollLeft);
+    const {scrollLeft, clientWidth} = scrollRef.current;
+
+    // ✅ 현재 중앙에 보이는 요소 찾기
+    const newIndex = Math.round(scrollLeft / clientWidth);
+    setActiveIndex(newIndex);
   };
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging || !scrollRef.current) return;
-    e.preventDefault();
-    const x = e.pageX - scrollRef.current.offsetLeft;
-    const walk = (x - startX) * 2; // 드래그 속도 조절
-    scrollRef.current.scrollLeft = scrollLeft - walk;
-  };
+  // ✅ 스크롤 이벤트 감지하여 현재 보이는 요소 업데이트
+  useEffect(() => {
+    if (!scrollRef.current) return;
 
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
+    scrollRef.current.addEventListener("scroll", handleScroll);
+
+    return () => {
+      scrollRef.current?.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <Wrapper>
-      <ScrollContainer
-        ref={scrollRef}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseUp}
-        onMouseUp={handleMouseUp}
-      >
+      <ScrollContainer ref={scrollRef}>
         <HitingBoxWrapper>
           <HitingBox divNum={1} />
         </HitingBoxWrapper>
@@ -99,6 +111,13 @@ const DivBlock = () => {
           <HitingBox divNum={3} />
         </HitingBoxWrapper>
       </ScrollContainer>
+
+      {/* ✅ 모바일(480px 이하)에서만 인디케이터 보이게 설정 */}
+      <IndicatorContainer>
+        {[0, 1, 2].map((index) => (
+          <Indicator key={index} $active={activeIndex === index} />
+        ))}
+      </IndicatorContainer>
     </Wrapper>
   );
 };

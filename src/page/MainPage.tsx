@@ -21,6 +21,13 @@ const AnimatedContainer = styled.div<{$delay?: string}>`
   animation-delay: ${(props) => props.$delay || "0s"};
 `;
 
+/* ✅ DivBlock에만 margin-left 적용 */
+const DivBlockContainer = styled(AnimatedContainer)`
+  @media (max-width: 480px) {
+    margin-left: 20px;
+  }
+`;
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -30,12 +37,12 @@ const Wrapper = styled.div`
 const MainHeader = styled.div`
   font-size: 35px;
   font-weight: 800;
-  text-align: left; /* ✅ 기본적으로 왼쪽 정렬 */
+  text-align: left;
 
-  /* ✅ 모바일에서 너비 100% 사용하여 확실히 왼쪽으로 정렬 */
+  /* ✅ 모바일에서 왼쪽 정렬 및 여백 추가 */
   @media (max-width: 480px) {
     width: 100%;
-    padding-left: 16px; /* ✅ 왼쪽 여백 추가 */
+    margin-left: 26px;
   }
 `;
 
@@ -46,17 +53,8 @@ const Down = styled.div`
   /* ✅ 480px 이하에서는 세로 정렬 + 순서 변경 */
   @media (max-width: 480px) {
     flex-direction: column-reverse;
-    gap: 12px;
-    align-items: center; /* 중앙 정렬 */
-  }
-`;
-
-/* ✅ 모바일에서 순서 변경을 위한 컨테이너 */
-const MobileOrderContainer = styled.div`
-  @media (max-width: 480px) {
-    display: flex;
-    flex-direction: column-reverse; /* ✅ 순서 반전 (EventBlock → StreakBox) */
-    gap: 12px;
+    gap: 52px;
+    align-items: center;
   }
 `;
 
@@ -65,17 +63,15 @@ const MainPage = () => {
     <LayOut>
       <Wrapper>
         <MainHeader>Hiting</MainHeader>
-        <AnimatedContainer $delay="0.1s">
+        {/* ✅ DivBlock에만 margin-left 적용 */}
+        <DivBlockContainer $delay="0.1s">
           <DivBlock />
-        </AnimatedContainer>
+        </DivBlockContainer>
         <AnimatedContainer $delay="0.2s">
-          {/* ✅ 데스크톱에서는 기존 순서, 모바일에서는 순서 변경 */}
-          <MobileOrderContainer>
-            <Down>
-              <StreakBox /> {/* ✅ 데스크톱: 먼저, 모바일: 나중에 */}
-              <EventBlock /> {/* ✅ 데스크톱: 나중에, 모바일: 먼저 */}
-            </Down>
-          </MobileOrderContainer>
+          <Down>
+            <StreakBox />
+            <EventBlock />
+          </Down>
         </AnimatedContainer>
       </Wrapper>
     </LayOut>
