@@ -47,6 +47,7 @@ const Borders = styled.div`
   gap: 4px;
 `;
 const Days = styled.div`
+  margin-top: 13px;
   width: 73px;
   height: 35px;
   display: flex;
@@ -69,6 +70,10 @@ const StreakGrid = styled.div`
   width: fit-content; /* ✅ 박스 개수에 맞춰 너비 자동 조정 */
   max-width: 273px; /* ✅ 최대 너비 설정 */
   height: fit-content;
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(10, 13px); /* ✅ 한 줄에 최대 20개 */
+    max-width: 139px;
+  }
 `;
 const StreakBox = styled.div`
   width: 13px;
