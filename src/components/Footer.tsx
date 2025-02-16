@@ -12,6 +12,9 @@ const Wrapper = styled.div`
   @media (max-width: 800px) {
     align-items: flex-start;
   }
+  @media (max-width: 480px) {
+    display: none;
+  }
 `;
 
 const FooterWrapper = styled.div`

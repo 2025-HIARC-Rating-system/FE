@@ -13,19 +13,35 @@ const Wrapper = styled.div`
 const Ranking = styled.div`
   width: 41.29px;
   margin-left: 32px;
+  @media (max-width: 480px) {
+    margin-left: 18px;
+    width: 24px; /* ✅ 너비 자동 조정 */
+  }
 `;
 const Handle = styled.div`
   width: 180px;
+  @media (max-width: 480px) {
+    width: 142px; /* ✅ 너비 자동 조정 */
+  }
 `;
 
 const Tier = styled.div`
   width: 200px;
+  @media (max-width: 480px) {
+    width: 118px;
+  }
 `;
 const Event = styled.div`
   width: 77px;
+  @media (max-width: 480px) {
+    display: none;
+  }
 `;
 const Today = styled.div`
   width: 77px;
+  @media (max-width: 480px) {
+    display: none;
+  }
 `;
 const Total = styled.div``;
 

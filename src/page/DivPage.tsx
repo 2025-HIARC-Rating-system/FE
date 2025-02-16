@@ -49,6 +49,9 @@ const Right = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20.65px;
+  @media (max-width: 480px) {
+    display: none;
+  }
 `;
 
 const DivPage = () => {

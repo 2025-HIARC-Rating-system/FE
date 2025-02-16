@@ -7,6 +7,9 @@ const Wrapper = styled.div`
   width: 673px;
   display: flex;
   flex-direction: column;
+  @media (max-width: 480px) {
+    width: 342px; /* ✅ 너비 자동 조정 */
+  }
 `;
 
 const RankingContiner = ({selected}: {selected: number}) => {
