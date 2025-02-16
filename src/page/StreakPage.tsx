@@ -35,6 +35,10 @@ const MainWrapper = styled.div`
 
 const Wrapper = styled.div`
   width: 100%;
+  @media (max-width: 480px) {
+    width: 100%;
+    margin-left: 16px;
+  }
 `;
 
 const StreakPage = () => {

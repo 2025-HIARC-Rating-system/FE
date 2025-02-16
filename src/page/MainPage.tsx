@@ -42,7 +42,7 @@ const MainHeader = styled.div`
   /* ✅ 모바일에서 왼쪽 정렬 및 여백 추가 */
   @media (max-width: 480px) {
     width: 100%;
-    margin-left: 26px;
+    margin-left: 16px;
   }
 `;
 

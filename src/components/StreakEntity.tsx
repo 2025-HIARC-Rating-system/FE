@@ -91,6 +91,9 @@ const Devider = styled.div`
   border-bottom: 1px solid ${Color.primary};
   margin-top: -1px; /* ✅ 위 border와 겹쳐서 하나처럼 보이게 조정 */
   margin-left: 12px;
+  @media (max-width: 480px) {
+    width: 92%;
+  }
 `;
 
 const StreakEntity = ({
