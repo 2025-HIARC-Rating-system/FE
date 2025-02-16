@@ -33,6 +33,10 @@ const HeadWrapper = styled.div`
   font-weight: 900;
 
   padding-bottom: 20px;
+  @media (max-width: 480px) {
+    width: 100%;
+    margin-left: 16px;
+  }
 `;
 
 const ButtonWrapper = styled.div`
