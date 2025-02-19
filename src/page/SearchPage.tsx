@@ -4,10 +4,20 @@ import {useSearchParams} from "react-router-dom";
 import {handleAtom} from "../store/Atom";
 import LayOut from "../ui/Layout";
 import styled from "styled-components";
-import StreakEntity from "../components/StreakEntity";
+import SearchedStreakEntity from "../components/SearchedStreakEnity";
+import SearchedHitingEntity from "../components/SearchedHitingEntity";
 const HandleWrapper = styled.div`
   font-size: 35px;
   margin-bottom: 34px;
+  font-weight: 800;
+`;
+const MainWrapper = styled.div`
+  display: flex;
+  gap: 60px;
+  @media (max-width: 480px) {
+    flex-direction: column;
+    gap: 14px;
+  }
 `;
 
 const SearchPage = () => {
@@ -26,14 +36,14 @@ const SearchPage = () => {
   return (
     <LayOut>
       <HandleWrapper>{handle}</HandleWrapper>
-      <StreakEntity
-        value={7}
-        maxValue={30}
-        days={80}
-        tier={20}
-        divNum={23}
-        id={handle}
-      />
+      <MainWrapper>
+        <SearchedStreakEntity value={7} maxValue={30} days={123} tier={17} />
+        <SearchedHitingEntity
+          totalScore={255}
+          seasonScore={255}
+          todayScore={2}
+        />
+      </MainWrapper>
     </LayOut>
   );
 };

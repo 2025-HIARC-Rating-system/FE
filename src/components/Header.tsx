@@ -30,6 +30,7 @@ const HIARC = styled.a`
   font-size: 20px;
   text-decoration: none;
   white-space: nowrap;
+  font-weight: 900;
 `;
 
 const Right = styled.div`

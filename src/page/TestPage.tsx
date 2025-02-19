@@ -3,7 +3,7 @@ import LayOut from "../ui/Layout";
 import CircularProgress from "../atoms/CircularProgress";
 import ChartComponent from "../components/ChartComponent";
 import {useState, useEffect} from "react";
-
+import SearchedEntity from "../components/SearchedStreakEnity";
 const CircleWrapper = styled.div`
   width: 300px;
   height: 300px;
@@ -26,10 +26,12 @@ const TestPage = () => {
 
   return (
     <LayOut>
+      <SearchedEntity value={7} maxValue={30} days={123} tier={17} />
       <CircleWrapper>
         <CircularProgress value={32} maxValue={45} />
         <ChartComponent />
       </CircleWrapper>
+
       <div>
         <h1>백엔드 데이터</h1>
         <pre>{JSON.stringify(data, null, 2)}</pre>
