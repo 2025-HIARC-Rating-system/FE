@@ -27,20 +27,20 @@ const Tier = styled.div`
   margin-top: 5px;
 `;
 const InfoEntity = ({
-  id,
-  divNum,
+  handle,
+  div,
   tier,
 }: {
-  id: string;
-  divNum: number;
+  handle: string;
+  div: number;
   tier: number;
 }) => {
-  const displayId = id.length > 10 ? id.slice(0, 9) + "..." : id;
+  const displayId = handle.length > 10 ? handle.slice(0, 9) + "..." : handle;
   return (
     <Wrapper>
       <IdWrapper>{displayId}</IdWrapper>
       <Divider>|</Divider>
-      div {divNum}
+      div {div}
       <Divider>|</Divider>
       <Tier>
         <TierImg tier={tier} />

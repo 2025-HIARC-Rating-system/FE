@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import CircularProgress from "../atoms/CircularProgress";
 import Color from "../ui/Color";
-
+import {NumberToStreakColor} from "../ui/NumberToStreakColor";
 const Wrapper = styled.div`
   width: 460px;
   display: flex;
@@ -103,26 +103,18 @@ const StreakBox = styled.div`
 `;
 
 const SearchedStreakEntity = ({
-  value,
-  maxValue,
-  days,
+  seasonStreak,
+  seasonTotal,
+  totalStreak,
   tier,
+  startDate,
 }: {
-  value: number;
-  maxValue: number;
-  days: number;
+  seasonStreak: number;
+  seasonTotal: number;
+  totalStreak: number;
   tier: number;
+  startDate: string;
 }) => {
-  const getStreakColor = (tier: number) => {
-    if (tier === 0) return Color.graySub3;
-    if (tier >= 1 && tier <= 5) return Color.bronze;
-    if (tier >= 6 && tier <= 10) return Color.silver;
-    if (tier >= 11 && tier <= 15) return Color.gold;
-    if (tier >= 16 && tier <= 20) return Color.platinum;
-    if (tier >= 21 && tier <= 25) return Color.diamond;
-    if (tier >= 26 && tier <= 30) return Color.ruby;
-    return Color.primary; // ✅ 31일 이상이면 Color.primary
-  };
   return (
     <Wrapper>
       <UpWrapper>Streak</UpWrapper>
@@ -130,8 +122,8 @@ const SearchedStreakEntity = ({
         <Left>
           <Border $borderColor={Color.graySub3}>이번 시즌</Border>
           <CircularProgress
-            value={value}
-            maxValue={maxValue}
+            value={seasonStreak}
+            maxValue={seasonTotal}
             width={60}
             height={60}
           />
@@ -139,18 +131,18 @@ const SearchedStreakEntity = ({
         <Right>
           <Borders>
             <Border $borderColor={Color.graySub3}>누적</Border>
-            <Border $borderColor={Color.primary}>2025.02.03 부터</Border>
+            <Border $borderColor={Color.primary}>{startDate}부터</Border>
           </Borders>
           <RightDown>
             <Days>
-              <div className="big">{days}</div>
+              <div className="big">{totalStreak}</div>
               <div className="small">일</div>
             </Days>
             <StreakGrid>
-              {Array.from({length: days}, (_, i) => (
+              {Array.from({length: totalStreak}, (_, i) => (
                 <StreakBox
                   key={i}
-                  style={{backgroundColor: getStreakColor(tier)}}
+                  style={{backgroundColor: NumberToStreakColor(tier)}}
                 />
               ))}
             </StreakGrid>

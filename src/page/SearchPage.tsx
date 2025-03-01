@@ -6,9 +6,11 @@ import LayOut from "../ui/Layout";
 import styled from "styled-components";
 import SearchedStreakEntity from "../components/SearchedStreakEnity";
 import SearchedHitingEntity from "../components/SearchedHitingEntity";
+import TierButton from "../components/TierButton";
+import DivAndRank from "../components/DivAndRank";
 const HandleWrapper = styled.div`
   font-size: 35px;
-  margin-bottom: 34px;
+  margin-bottom: 24px;
   font-weight: 800;
 `;
 const MainWrapper = styled.div`
@@ -18,6 +20,11 @@ const MainWrapper = styled.div`
     flex-direction: column;
     gap: 14px;
   }
+`;
+const Explain = styled.div`
+  display: flex;
+  margin-bottom: 14px;
+  gap: 6px;
 `;
 
 const SearchPage = () => {
@@ -36,8 +43,18 @@ const SearchPage = () => {
   return (
     <LayOut>
       <HandleWrapper>{handle}</HandleWrapper>
+      <Explain>
+        <TierButton tier={17} />
+        <DivAndRank divNum={3} rank={12} />
+      </Explain>
       <MainWrapper>
-        <SearchedStreakEntity value={7} maxValue={30} days={123} tier={17} />
+        <SearchedStreakEntity
+          seasonStreak={7}
+          seasonTotal={30}
+          totalStreak={123}
+          tier={17}
+          startDate="2025-01-01"
+        />
         <SearchedHitingEntity
           totalScore={255}
           seasonScore={255}
