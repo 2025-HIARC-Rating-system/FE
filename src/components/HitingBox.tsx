@@ -31,11 +31,23 @@ const TackContainer = styled.div`
   padding-top: 20px;
 `;
 
+const ERRORWRAPPER = styled.div`
+  margin-top: 20px;
+  width: 100%;
+`;
+
 const HitingBox = ({divNum}: {divNum: number}) => {
   const [hitingData] = useAtom(hitingDataAtom);
 
   if (!hitingData) {
-    return <Wrapper>Loading...</Wrapper>; // ✅ 데이터가 없을 경우 안전한 렌더링
+    return (
+      <Wrapper>
+        <ERRORWRAPPER>
+          <ArrowButton divNum={divNum} />
+          Loading...
+        </ERRORWRAPPER>
+      </Wrapper>
+    ); // ✅ 데이터가 없을 경우 안전한 렌더링
   }
 
   const divList: HitingItem[] =
