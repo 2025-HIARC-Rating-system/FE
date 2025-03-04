@@ -1,6 +1,8 @@
 import styled from "styled-components";
+import {useNavigate} from "react-router-dom"; // ✅ `useNavigate` 추가
 import TierImg from "../ui/TierImg";
 import Color from "../ui/Color";
+
 const Wrapper = styled.div<{$isUnderlined: boolean}>`
   padding-left: 5px;
   width: 85%;
@@ -12,6 +14,7 @@ const Wrapper = styled.div<{$isUnderlined: boolean}>`
   align-items: center;
   font-size: 14px;
   font-weight: 400;
+  cursor: pointer; // ✅ 클릭 가능하도록 커서 변경
 `;
 
 const Information = styled.div`
@@ -27,26 +30,34 @@ const NumAndId = styled.div`
 `;
 
 const DivNameTack = ({
-  num,
+  rank,
   id,
   tier = 31,
-  increasedRating,
+  totalHiting,
 }: {
-  num: number;
+  rank: number;
   id: string;
   tier: number;
-  increasedRating: number;
+  totalHiting: number;
 }) => {
+  const navigate = useNavigate(); // ✅ `useNavigate()` 사용
+
+  const handleClick = () => {
+    navigate(`/search?handle=${id}`); // ✅ 클릭하면 `/search?handle=아이디`로 이동
+  };
+
   return (
-    <Wrapper $isUnderlined={num !== 5}>
+    <Wrapper $isUnderlined={rank !== 5} onClick={handleClick}>
+      {" "}
+      {/* ✅ 클릭 이벤트 추가 */}
       <Information>
         <NumAndId>
-          <div>{num}</div>
+          <div>{rank}</div>
           <div>{id}</div>
         </NumAndId>
         <TierImg tier={tier} />
       </Information>
-      {increasedRating}
+      {totalHiting}
     </Wrapper>
   );
 };

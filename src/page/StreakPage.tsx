@@ -1,7 +1,10 @@
+import {useEffect, useState} from "react";
 import LayOut from "../ui/Layout";
 import styled, {keyframes} from "styled-components";
 import StreakEntity from "../components/StreakEntity";
+import {fetchStreakData, StreakData} from "../api/StreakApi"; // ✅ API 모듈 import
 
+// 애니메이션 효과
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -12,6 +15,7 @@ const fadeIn = keyframes`
     transform: translateY(0);
   }
 `;
+
 const AnimatedContainer = styled.div<{$delay?: string}>`
   opacity: 0;
   animation: ${fadeIn} 1s ease-in-out forwards;
@@ -21,16 +25,15 @@ const AnimatedContainer = styled.div<{$delay?: string}>`
 const HeadWrapper = styled.div`
   font-size: 35px;
   font-weight: 900;
-
   padding-bottom: 24px;
 `;
 
 const MainWrapper = styled.div`
   display: flex;
-  flex-wrap: wrap; /* ✅ 너비 초과 시 줄바꿈 */
-  gap: 60px 80px; /* ✅ 요소 간 간격 조정 */
-  justify-content: flex-start; /* ✅ 중앙 정렬 */
-  width: 100%; /* ✅ 전체 너비 사용 */
+  flex-wrap: wrap;
+  gap: 60px 80px;
+  justify-content: flex-start;
+  width: 100%;
 `;
 
 const Wrapper = styled.div`
@@ -42,78 +45,52 @@ const Wrapper = styled.div`
 `;
 
 const StreakPage = () => {
+  const [streakData, setStreakData] = useState<StreakData[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const loadStreakData = async () => {
+      setLoading(true);
+      setError(null);
+      const data = await fetchStreakData();
+      if (data) {
+        setStreakData(data);
+      } else {
+        setError("데이터를 불러오는 데 실패했습니다.");
+      }
+      setLoading(false);
+    };
+
+    loadStreakData();
+  }, []);
+
   return (
     <LayOut>
       <Wrapper>
         <HeadWrapper>Streak</HeadWrapper>
-        <AnimatedContainer $delay="0.2s">
-          <MainWrapper>
-            <StreakEntity
-              value={15}
-              maxValue={30}
-              days={83}
-              tier={7}
-              divNum={3}
-              id="brayden"
-            />
-            <StreakEntity
-              value={9}
-              maxValue={30}
-              days={53}
-              tier={23}
-              divNum={1}
-              id="htuti"
-            />
-            <StreakEntity
-              value={10}
-              maxValue={30}
-              days={122}
-              tier={18}
-              divNum={3}
-              id="ghwo336"
-            />
-            <StreakEntity
-              value={19}
-              maxValue={30}
-              days={122}
-              tier={26}
-              divNum={3}
-              id="optiprime"
-            />
-            <StreakEntity
-              value={1}
-              maxValue={30}
-              days={122}
-              tier={1}
-              divNum={3}
-              id="bronze"
-            />
-            <StreakEntity
-              value={10}
-              maxValue={30}
-              days={12}
-              tier={13}
-              divNum={3}
-              id="gold33"
-            />
-            <StreakEntity
-              value={10}
-              maxValue={30}
-              days={322}
-              tier={31}
-              divNum={3}
-              id="ghwsdafjndskfnasdjlvnjkldvnajskdvn"
-            />
-            <StreakEntity
-              value={10}
-              maxValue={30}
-              days={22}
-              tier={18}
-              divNum={3}
-              id="fkfk"
-            />
-          </MainWrapper>
-        </AnimatedContainer>
+        {loading ? (
+          <p>로딩 중...</p>
+        ) : error ? (
+          <p>{error}</p>
+        ) : (
+          <AnimatedContainer $delay="0.2s">
+            <MainWrapper>
+              {streakData.map((streak, index) => (
+                <StreakEntity
+                  key={index}
+                  handle={streak.handle}
+                  tier={streak.tier}
+                  div={streak.div}
+                  seasonStreak={streak.seasonStreak}
+                  seasonTotal={streak.seasonTotal}
+                  totalStreak={streak.totalStreak}
+                  startDate={streak.startDate}
+                />
+              ))}
+            </MainWrapper>
+          </AnimatedContainer>
+        )}
       </Wrapper>
     </LayOut>
   );

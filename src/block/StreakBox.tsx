@@ -40,12 +40,48 @@ const Individuals = styled.div`
 const StreakBox = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 480);
   const allBlocks = [
-    {tier: 27, id: "ghwo336", div: 1, days: 30},
-    {tier: 24, id: "hututi", div: 1, days: 30},
-    {tier: 12, id: "brayden", div: 1, days: 30},
-    {tier: 30, id: "hi-arc", div: 1, days: 30},
-    {tier: 1, id: "pizza", div: 1, days: 30},
-    {tier: 0, id: "how are you", div: 1, days: 30},
+    {
+      tier: 27,
+      handle: "ghwo336",
+      divNum: 1,
+      totalStreak: 30,
+      startDate: "2025-01-02",
+    },
+    {
+      tier: 24,
+      handle: "hututi",
+      divNum: 1,
+      totalStreak: 30,
+      startDate: "2025-01-02",
+    },
+    {
+      tier: 12,
+      handle: "brayden",
+      divNum: 1,
+      totalStreak: 30,
+      startDate: "2025-01-02",
+    },
+    {
+      tier: 30,
+      handle: "hi-arc",
+      divNum: 1,
+      totalStreak: 30,
+      startDate: "2025-01-02",
+    },
+    {
+      tier: 1,
+      handle: "pizza",
+      divNum: 1,
+      totalStreak: 30,
+      startDate: "2025-01-02",
+    },
+    {
+      tier: 0,
+      handle: "how are you",
+      divNum: 1,
+      totalStreak: 30,
+      startDate: "2025-01-02",
+    },
   ];
 
   // ✅ 화면 크기 변경 감지
@@ -66,9 +102,18 @@ const StreakBox = () => {
         <StreakBoxArrowButton />
       </ButtonWrapper>
       <Individuals>
-        {displayedBlocks.map(({tier, id, div, days}) => (
-          <IndividualBlock key={id} tier={tier} id={id} div={div} days={days} />
-        ))}
+        {displayedBlocks.map(
+          ({tier, handle, divNum, totalStreak, startDate}) => (
+            <IndividualBlock
+              key={handle}
+              tier={tier}
+              handle={handle}
+              divNum={divNum}
+              totalStreak={totalStreak}
+              startDate={startDate}
+            />
+          )
+        )}
       </Individuals>
     </Wrapper>
   );

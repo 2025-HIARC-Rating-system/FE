@@ -76,13 +76,13 @@ const Score = styled.div`
 `;
 
 const SearchedHitingEntity = ({
-  totalScore,
-  seasonScore,
-  todayScore,
+  totalHiting,
+  seasonHiting,
+  dailyHiting,
 }: {
-  totalScore: number;
-  seasonScore: number;
-  todayScore: number;
+  totalHiting: number;
+  seasonHiting: number;
+  dailyHiting: number;
 }) => {
   return (
     <Wrapper>
@@ -90,15 +90,15 @@ const SearchedHitingEntity = ({
       <DownWrapper>
         <Left>
           <Border>누적</Border>
-          <Score>{totalScore}</Score>
+          <Score>{totalHiting}</Score>
         </Left>
         <Middle>
           <Border>이번 시즌</Border>
-          <Score>{seasonScore}</Score>
+          <Score>{seasonHiting}</Score>
         </Middle>
         <Right>
           <Border>오늘</Border>
-          <Score>{todayScore}</Score>
+          <Score>{dailyHiting}</Score>
         </Right>
       </DownWrapper>
     </Wrapper>

@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import Color from "../ui/Color";
 import TierImg from "../ui/TierImg";
+import {useNavigate} from "react-router-dom";
 
 const Wrapper = styled.div`
   width: 224px;
   height: 124px;
   background-color: white;
   display: flex;
+  cursor: pointer;
   flex-direction: column;
   border-radius: 16px;
   min-width: 224px;
@@ -75,32 +77,39 @@ const Days = styled.div`
 `;
 
 const IndividualBlock = ({
-  tier = 0,
-  id = "ghwo36",
-  div = 1,
-  days = 7,
+  tier,
+  handle,
+  divNum,
+  totalStreak,
+  startDate,
 }: {
   tier: number;
-  id: string;
-  div: number;
-
-  days: number;
+  handle: string;
+  divNum: number;
+  totalStreak: number;
+  startDate: string;
 }) => {
+  const navigate = useNavigate(); // ✅ `useNavigate()` 사용
+
+  const handleClick = () => {
+    navigate(`/search?handle=${handle}`); // ✅ 클릭하면 `/search?handle=아이디`로 이동
+  };
+
   return (
-    <Wrapper>
+    <Wrapper onClick={handleClick}>
       <Up>
         <TierImg tier={tier} />
-        {id}
+        {handle}
         <div>|</div>
-        <div>div {div}</div>
+        <div>div {divNum}</div>
       </Up>
       <Down>
         <Borders>
           <Border $borderColor={Color.graySub3}>누적</Border>
-          <Border $borderColor={Color.primary}>2025.02.03 부터</Border>
+          <Border $borderColor={Color.primary}>{startDate} 부터</Border>
         </Borders>
         <Days>
-          <div className="big">{days}</div>
+          <div className="big">{totalStreak}</div>
           <div className="small">일</div>
         </Days>
       </Down>
