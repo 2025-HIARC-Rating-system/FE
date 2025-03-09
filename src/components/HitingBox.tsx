@@ -1,6 +1,7 @@
+import {useEffect, useState} from "react";
 import styled from "styled-components";
-import {useAtom} from "jotai";
-import {hitingDataAtom, HitingItem} from "../store/Atom"; // ✅ HitingItem import 추가
+import {fetchHitingData} from "../api/MainPageApi"; // ✅ API 직접 호출
+import {DivData} from "../api/MainPageApi"; // ✅ DivData 타입 가져오기
 import Color from "../ui/Color";
 import ArrowButton from "../atoms/ArrowButton";
 import DivNameTack from "./DivNameTack";
@@ -37,25 +38,66 @@ const ERRORWRAPPER = styled.div`
 `;
 
 const HitingBox = ({divNum}: {divNum: number}) => {
-  const [hitingData] = useAtom(hitingDataAtom);
+  const [hitingData, setHitingData] = useState<{
+    div1List: DivData[];
+    div2List: DivData[];
+    div3List: DivData[];
+  }>({
+    div1List: [],
+    div2List: [],
+    div3List: [],
+  });
 
-  if (!hitingData) {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // ✅ API 호출 및 데이터 저장
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const data = await fetchHitingData();
+        setHitingData(data);
+      } catch (err) {
+        setError("데이터를 불러오는 데 실패했습니다.");
+        console.log(err);
+      }
+      setLoading(false);
+    };
+
+    fetchData();
+  }, []);
+
+  // ✅ divNum에 따라 올바른 데이터 리스트 선택
+  const divList: DivData[] =
+    divNum === 1
+      ? hitingData.div1List
+      : divNum === 2
+      ? hitingData.div2List
+      : hitingData.div3List || [];
+
+  if (loading) {
     return (
       <Wrapper>
         <ERRORWRAPPER>
           <ArrowButton divNum={divNum} />
-          Loading...
+          <p>Loading...</p> {/* ✅ 로딩 UI 개선 */}
         </ERRORWRAPPER>
       </Wrapper>
-    ); // ✅ 데이터가 없을 경우 안전한 렌더링
+    );
   }
 
-  const divList: HitingItem[] =
-    divNum === 1
-      ? hitingData.Div1List
-      : divNum === 2
-      ? hitingData.Div2List
-      : hitingData.Div3List || [];
+  if (error) {
+    return (
+      <Wrapper>
+        <ERRORWRAPPER>
+          <ArrowButton divNum={divNum} />
+          <p>{error}</p> {/* ✅ 에러 메시지 표시 */}
+        </ERRORWRAPPER>
+      </Wrapper>
+    );
+  }
 
   return (
     <Wrapper>
@@ -63,15 +105,19 @@ const HitingBox = ({divNum}: {divNum: number}) => {
         <ArrowButton divNum={divNum} />
       </ButtonWrapper>
       <TackContainer>
-        {divList.map((item, index) => (
-          <DivNameTack
-            key={index}
-            rank={item.rank}
-            id={item.handle}
-            tier={item.tier}
-            totalHiting={item.totalHiting}
-          />
-        ))}
+        {divList.length > 0 ? (
+          divList.map((item, index) => (
+            <DivNameTack
+              key={index}
+              rank={item.rank}
+              id={item.handle}
+              tier={item.tier}
+              totalHiting={item.totalHiting}
+            />
+          ))
+        ) : (
+          <p>데이터가 없습니다.</p>
+        )}
       </TackContainer>
     </Wrapper>
   );

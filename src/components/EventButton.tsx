@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react";
 import styled from "styled-components";
-import Img from "../assets/evenImg2.svg";
+import Img from "../assets/eventImg.png";
 
 const Button = styled.div`
   width: 194px;

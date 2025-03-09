@@ -1,6 +1,3 @@
-import {useEffect} from "react";
-import {useSetAtom} from "jotai";
-import {fetchAndSetHitingData, hitingDataAtom} from "../store/Atom"; // ✅ 올바른 경로 확인
 import LayOut from "../ui/Layout";
 import DivBlock from "../block/DivBlock";
 import StreakBox from "../block/StreakBox";
@@ -36,12 +33,6 @@ const Down = styled.div`
 `;
 
 const MainPage = () => {
-  const setHitingData = useSetAtom(hitingDataAtom);
-
-  useEffect(() => {
-    fetchAndSetHitingData(setHitingData);
-  }, []); // ✅ 의존성 배열에서 `setHitingData` 제거
-
   return (
     <LayOut>
       <Wrapper>
