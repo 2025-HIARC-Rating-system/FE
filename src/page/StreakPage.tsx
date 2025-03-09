@@ -48,14 +48,15 @@ const StreakPage = () => {
   const [streakData, setStreakData] = useState<StreakData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
+  const [seasonTotal, setSeasonTotal] = useState<number>(0);
   useEffect(() => {
     const loadStreakData = async () => {
       setLoading(true);
       setError(null);
       const data = await fetchStreakData();
       if (data) {
-        setStreakData(data);
+        setStreakData(data.streakList);
+        setSeasonTotal(data.seasonTotal);
       } else {
         setError("데이터를 불러오는 데 실패했습니다.");
       }
@@ -83,7 +84,7 @@ const StreakPage = () => {
                   tier={streak.tier}
                   div={streak.div}
                   seasonStreak={streak.seasonStreak}
-                  seasonTotal={streak.seasonTotal}
+                  seasonTotal={seasonTotal}
                   totalStreak={streak.totalStreak}
                   startDate={streak.startDate}
                 />
