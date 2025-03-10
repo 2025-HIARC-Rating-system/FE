@@ -3,6 +3,7 @@ import {useState, useEffect} from "react";
 import Color from "../ui/Color";
 import IndividualBlock from "../components/IndividualBlock";
 import StreakBoxArrowButton from "../components/StreakBoxArrowButton";
+import {fetchHitingData, StreakData} from "../api/MainPageApi";
 
 const Wrapper = styled.div`
   width: 725px;
@@ -39,50 +40,32 @@ const Individuals = styled.div`
 
 const StreakBox = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 480);
-  const allBlocks = [
-    {
-      tier: 27,
-      handle: "ghwo336",
-      divNum: 1,
-      totalStreak: 30,
-      startDate: "2025-01-02",
-    },
-    {
-      tier: 24,
-      handle: "hututi",
-      divNum: 1,
-      totalStreak: 30,
-      startDate: "2025-01-02",
-    },
-    {
-      tier: 12,
-      handle: "brayden",
-      divNum: 1,
-      totalStreak: 30,
-      startDate: "2025-01-02",
-    },
-    {
-      tier: 30,
-      handle: "hi-arc",
-      divNum: 1,
-      totalStreak: 30,
-      startDate: "2025-01-02",
-    },
-    {
-      tier: 1,
-      handle: "pizza",
-      divNum: 1,
-      totalStreak: 30,
-      startDate: "2025-01-02",
-    },
-    {
-      tier: 0,
-      handle: "how are you",
-      divNum: 1,
-      totalStreak: 30,
-      startDate: "2025-01-02",
-    },
-  ];
+  const [streakData, setStreakData] = useState<{
+    streakList: StreakData[];
+  }>({
+    streakList: [],
+  });
+
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const data = await fetchHitingData();
+        setStreakData(data);
+      } catch (err) {
+        setError("데이터를 못불러오고있어요");
+        console.log(err);
+      }
+      setLoading(false);
+    };
+    fetchData();
+  }, []);
+
+  const streakList: StreakData[] = streakData.streakList.slice(0, 6) || [];
 
   // ✅ 화면 크기 변경 감지
   useEffect(() => {
@@ -94,27 +77,35 @@ const StreakBox = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const displayedBlocks = isMobile ? allBlocks.slice(0, 4) : allBlocks;
+  const displayedBlocks = isMobile ? streakList.slice(0, 4) : streakList;
 
   return (
     <Wrapper>
       <ButtonWrapper>
         <StreakBoxArrowButton />
       </ButtonWrapper>
-      <Individuals>
-        {displayedBlocks.map(
-          ({tier, handle, divNum, totalStreak, startDate}) => (
-            <IndividualBlock
-              key={handle}
-              tier={tier}
-              handle={handle}
-              divNum={divNum}
-              totalStreak={totalStreak}
-              startDate={startDate}
-            />
-          )
-        )}
-      </Individuals>
+      {loading ? (
+        <p style={{textAlign: "center", padding: "20px"}}>로딩 중...</p>
+      ) : error ? (
+        <p style={{textAlign: "center", color: "red", padding: "20px"}}>
+          {error}
+        </p>
+      ) : (
+        <Individuals>
+          {displayedBlocks.map(
+            ({tier, handle, divNum, totalStreak, startDate}) => (
+              <IndividualBlock
+                key={handle}
+                tier={tier}
+                handle={handle}
+                divNum={divNum}
+                totalStreak={totalStreak}
+                startDate={startDate}
+              />
+            )
+          )}
+        </Individuals>
+      )}
     </Wrapper>
   );
 };
