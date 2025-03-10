@@ -2,7 +2,24 @@ import LayOut from "../ui/Layout";
 import DivBlock from "../block/DivBlock";
 import StreakBox from "../block/StreakBox";
 import EventBlock from "../block/EventBlock";
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const AnimatedContainer = styled.div<{$delay?: string}>`
+  opacity: 0;
+  animation: ${fadeIn} 1s ease-in-out forwards;
+  animation-delay: ${(props) => props.$delay || "0s"};
+`;
 
 const Wrapper = styled.div`
   display: flex;
@@ -37,10 +54,16 @@ const MainPage = () => {
     <LayOut>
       <Wrapper>
         <MainHeader>Hiting</MainHeader>
-        <DivBlock />
+        <AnimatedContainer $delay="0.3s">
+          <DivBlock />
+        </AnimatedContainer>
         <Down>
-          <StreakBox />
-          <EventBlock />
+          <AnimatedContainer $delay="0.6s">
+            <StreakBox />
+          </AnimatedContainer>
+          <AnimatedContainer $delay="0.6s">
+            <EventBlock />
+          </AnimatedContainer>
         </Down>
       </Wrapper>
     </LayOut>
