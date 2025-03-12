@@ -106,7 +106,9 @@ const IndividualBlock = ({
       <Down>
         <Borders>
           <Border $borderColor={Color.graySub3}>누적</Border>
-          <Border $borderColor={Color.primary}>{startDate} 부터</Border>
+          {startDate && (
+            <Border $borderColor={Color.primary}>{startDate} 부터</Border>
+          )}
         </Borders>
         <Days>
           <div className="big">{totalStreak}</div>

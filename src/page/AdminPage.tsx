@@ -1,3 +1,5 @@
+import AdminInput from "../block/adminBlock/AdminInput";
+import HistroyCheck from "../block/adminBlock/HistoryCheck";
 import LayOut from "../ui/Layout";
 import styled from "styled-components";
 const HeadWrapper = styled.div`
@@ -15,6 +17,12 @@ const AdminPage = () => {
   return (
     <LayOut>
       <HeadWrapper>관리자 페이지</HeadWrapper>
+      <HistroyCheck />
+      <AdminInput BlockName="새로운 학기 시작하기" />
+      <AdminInput BlockName="새로운 시즌 시작하기" />
+      <AdminInput BlockName="현재 시즌 중도 마무리" />
+      <AdminInput BlockName="새로운 이벤트 시작하기" />
+      <AdminInput BlockName="현재 이벤트 중도 마무리" />
     </LayOut>
   );
 };
