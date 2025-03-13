@@ -12,7 +12,7 @@ function App() {
       <Route path="/div" element={<DivPage />} />
       <Route path="/streak" element={<StreakPage />} />
       <Route path="/search" element={<SearchPage />} />
-      <Route path="/admin" element={<AdminPage />} />
+      <Route path="/rlaehdghks8383" element={<AdminPage />} />
     </Routes>
   );
 }

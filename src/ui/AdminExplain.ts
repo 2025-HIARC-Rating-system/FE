@@ -1,5 +1,5 @@
 export const AdminExplain: Record<string, string> = {
-  "새로운 학기 시작하기":
+  "새로운 학기 시작하기(막누르지마셈 초 기 화 됨)":
     "학회원 정보를 형식에 맞게 list로 입력하세요(GPT ㄱㄱ) 정보가 초기화 되고 일부는 지난시즌 기록으로 넘어갑니다",
   "새로운 시즌 시작하기": "시즌 기간을 형식에 맞게 입력하세요.",
   "현재 시즌 중도 마무리":
@@ -7,10 +7,12 @@ export const AdminExplain: Record<string, string> = {
   "새로운 이벤트 시작하기": "이벤트 기간을 형식에 맞게 입력하세요.",
   "현재 이벤트 중도 마무리":
     "기존에 위에 입력했던 end시간과 다른 시간에 시즌을 끝내고 싶다면 이벤트 마무리 기간을 형식에 맞게 입력하세요",
+  "시즌 끝내기 (점수 초기화)": `위에서 이벽한 시즌 end 날짜에 맞춰 점수 집계는 종료 됩니다.\n아래 초기화 버튼을 눌러야 현재 시즌 정보가 "지난 시즌 기록 확인하기" 로 옮겨가고 이후 계산이 알맞게 됩니다. `,
+  "이벤트 끝내기 (점수 초기화)": `위에서 입력한 이벤트 end 날짜에 맞춰 점수 집계는 종료됩니다.\n아래 초기화 버튼을 눌러야 현재 이벤트 정보가 "지난 이벤트 기록 확인하기" 로 옮겨지고 이후 계산이 알맞게 됩니다. `,
 };
 
 export const AdminWarn: Record<string, string> = {
-  "새로운 학기 시작하기": "",
+  "새로운 학기 시작하기(막누르지마셈 초 기 화 됨)": "",
   "새로운 시즌 시작하기": "",
   "현재 시즌 중도 마무리":
     "주의: 현재 시점보다 미래의 시간만 가능, 시작 시간 변경은 불가능",
@@ -21,8 +23,8 @@ export const AdminWarn: Record<string, string> = {
 };
 
 export const Ex: Record<string, string> = {
-  "새로운 학기 시작하기": `ex.\n\n[\n{"name":"김동환", "handle":"Brayden},\n{"name":"이호재","handle":"ghwo336"}\n]`,
+  "새로운 학기 시작하기(막누르지마셈 초 기 화 됨)": `ex.\n\n[\n{"name":"김동환", "handle":"Brayden"},\n{"name":"이호재","handle":"ghwo336"}\n]`,
   "새로운 시즌 시작하기": `ex.\n\n{"start":"2025-03-02T02:39:36.342Z",\n "end":"2025-03-04T02:39:36.342Z"}`,
-  "현재 시즌 중도 마무리": `ex.\n\n{"2025-03-02T02:39:36.342Z"}`,
-  "새로운 이벤트 시작하기": `ex.\n\n{"start":"2025-03-02T02:39:36.342Z",\n "end":"2025-03-04T02:39:36.342Z"},\n"eventCategory:"DOUBLE_EVENT",\n "tag":"false"}\n\n *eventCategory는 DOUBLE_EVENT,TAG_EVENT 중하나만 입력\n *tag:TagEvent 중일때만 true`,
+  "현재 시즌 중도 마무리": `ex.\n\n2025-03-02T02:39:36.342Z`,
+  "새로운 이벤트 시작하기": `ex.\n\n{"start" : "2025-03-02T02:39:36.342Z",\n "end":"2025-03-04T02:39:36.342Z",\n"eventCategory": DOUBLE_EVENT",\n "tag":"false"}\n\n *eventCategory는 DOUBLE_EVENT,TAG_EVENT 중하나만 입력\n *tag:TagEvent 중일때만 true`,
 };
