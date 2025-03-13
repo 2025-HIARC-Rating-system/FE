@@ -3,9 +3,11 @@ import {AdminExplain} from "../../ui/AdminExplain";
 import {Ex} from "../../ui/AdminExplain";
 import Color from "../../ui/Color";
 import {useState} from "react";
+import {sendAdminInput} from "../../api/AdminApi";
 
 const Wrapper = styled.div`
   overflow: visible;
+  border-bottom: 1px solid black;
 `;
 const Header = styled.div`
   margin-top: 36px;
@@ -27,6 +29,7 @@ const InputBox = styled.div`
   width: 500px;
   height: 166px;
   margin-top: 24px;
+  margin-bottom: 49px;
 `;
 const Input = styled.textarea`
   height: 110px;
@@ -64,6 +67,17 @@ const AdminInput = ({BlockName}: {BlockName: string}) => {
     setInputValue(e.target.value);
     console.log(inputValue);
   };
+  const handleSubmit = async () => {
+    try {
+      const response = await sendAdminInput(BlockName, inputValue);
+      if (response) {
+        setInputValue("");
+      }
+    } catch (error) {
+      alert("전송 실패");
+      console.log("실패", error);
+    }
+  };
   return (
     <Wrapper>
       <Header>{BlockName}</Header>
@@ -72,7 +86,7 @@ const AdminInput = ({BlockName}: {BlockName: string}) => {
       <InputBox>
         <Input value={inputValue} onChange={handleInputChange} />
         <BottomWrapper>
-          <Button>입력하기</Button>
+          <Button onClick={handleSubmit}>입력하기</Button>
         </BottomWrapper>
       </InputBox>
     </Wrapper>

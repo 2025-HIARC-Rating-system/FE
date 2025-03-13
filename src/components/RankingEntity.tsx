@@ -59,7 +59,7 @@ const RankingEntity = ({
   ranking,
   handle,
   tier,
-  event = true,
+  event,
   today,
   total,
 }: {

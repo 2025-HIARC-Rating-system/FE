@@ -1,0 +1,70 @@
+import apiClient from "./ApiClient"; // ✅ apiClient 임포트
+
+// ✅ BlockName에 따라 다른 URL을 선택하여 데이터를 전송하는 함수
+export const sendAdminInput = async (blockName: string, inputValue: string) => {
+  if (!inputValue.trim()) {
+    alert("입력값을 입력해주세요.");
+    return;
+  }
+
+  // 🔥 JSON 문자열을 객체 배열로 변환 (단, "새로운 학기 시작하기"일 경우만 배열)
+  let parsedData;
+  try {
+    if (blockName === "새로운 학기 시작하기") {
+      parsedData = JSON.parse(inputValue);
+
+      if (!Array.isArray(parsedData)) {
+        throw new Error("올바른 JSON 배열이 아닙니다.");
+      }
+    }
+    if (blockName === "현재 시즌 중도 마무리") {
+      parsedData = inputValue;
+      console.log(parsedData);
+    } else {
+      parsedData = JSON.parse(inputValue);
+      if (typeof parsedData !== "object" || Array.isArray(parsedData)) {
+        throw new Error("올바른 객체 형식이 아닙니다.");
+      }
+    }
+  } catch (error) {
+    alert("입력값이 올바른 JSON 형식이 아닙니다.");
+    console.error("JSON 변환 실패:", error);
+    return;
+  }
+
+  // ✅ BlockName에 따라 API 엔드포인트를 동적으로 변경
+  const apiUrl = (() => {
+    switch (blockName) {
+      case "새로운 학기 시작하기":
+        console.log("새로운학기시작하기에 보낼게");
+        return "/admin/reset/term";
+      case "새로운 시즌 시작하기":
+        return "/admin/season/new";
+      case "현재 시즌 중도 마무리":
+        return "/admin/season/end";
+      case "새로운 이벤트 시작하기":
+        return "/admin/event/new";
+      case "현재 이벤트 중도 마무리":
+        return "/admin/event/end";
+      default:
+        alert("올바르지 않은 BlockName입니다.");
+        console.error(`❌ ${blockName}은 유효하지 않은 BlockName입니다.`);
+        return;
+    }
+  })();
+
+  if (!apiUrl) return; // 유효하지 않은 URL일 경우 요청을 중단
+
+  try {
+    const response = await apiClient.post(apiUrl, parsedData);
+
+    console.log(`📨 ${blockName} 데이터 전송 성공:`, response);
+    alert("성공적으로 전송되었습니다!");
+
+    return response;
+  } catch (error) {
+    console.log("전송되는 데이터:", parsedData);
+    console.error(`❌ ${blockName} 데이터 전송 실패:`, error);
+    alert("데이터 전송에 실패했습니다.");
+  }
+};
