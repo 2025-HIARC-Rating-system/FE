@@ -32,7 +32,9 @@ const AdminEnd = ({endName}: {endName: string}) => {
   } else url = "event";
   const handleButtonClick = async () => {
     try {
-      const response = await apiClient.post(`/admin/reset/${url}`);
+      const response = await apiClient.post(
+        `admin/rlaehdghks8383/reset/${url}`
+      );
       console.log("요청성공", response);
       alert("초기화에 성공하였습니다.");
     } catch (error) {
