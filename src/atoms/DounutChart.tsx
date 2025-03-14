@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import {useState, useEffect} from "react";
 import styled from "styled-components";
 import Color from "../ui/Color"; // 기본 색상 관리 파일
 
@@ -45,34 +45,20 @@ const DonutChart: React.FC<DonutChartProps> = ({
   strokeColor = Color.primary,
   backgroundColor = "#eee",
   div,
-  duration = 500,
 }) => {
   const [animatedValue, setAnimatedValue] = useState(0);
 
   useEffect(() => {
-    const startTime = performance.now();
-
-    const animate = (time: number) => {
-      const progress = Math.min((time - startTime) / duration, 1);
-      const newValue = Math.floor(progress * (isNaN(value) ? 0 : value)); // NaN일 경우 0으로 처리
-      setAnimatedValue(newValue);
-
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      }
-    };
-
-    requestAnimationFrame(animate);
-  }, [value, duration]);
+    // value 값이 바뀔 때마다 바로 반영되도록 처리
+    const newValue = value; // value 값으로 바로 설정
+    setAnimatedValue(newValue); // 애니메이션 없이 바로 업데이트
+  }, [value]); // value가 변경될 때마다 실행
 
   const size = 180;
   const strokeWidth = 30;
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
   const progress = (animatedValue / maxValue) * circumference;
-
-  // animatedValue가 NaN이면 0으로 설정
-  const safeValue = isNaN(animatedValue) ? 0 : animatedValue;
 
   return (
     <ChartWrapper>
@@ -111,7 +97,7 @@ const DonutChart: React.FC<DonutChartProps> = ({
               dominantBaseline: "middle",
             }}
           >
-            <tspan fontSize="45px">{safeValue}</tspan>{" "}
+            <tspan fontSize="45px">{animatedValue}</tspan>{" "}
             {/* 애니메이션 적용된 숫자 */}
             <tspan fontSize="12px" dx="0px" dy="7px">
               %
