@@ -46,6 +46,7 @@ const Down = styled.div`
     flex-direction: column-reverse;
     gap: 52px;
     align-items: center;
+    margin-bottom: 40px;
   }
 `;
 
