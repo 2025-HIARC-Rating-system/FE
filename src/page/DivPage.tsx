@@ -45,6 +45,7 @@ const ButtonWrapper = styled.div`
   justify-content: center;
   padding-bottom: 45px;
 `;
+
 const MainWrapper = styled.div`
   display: flex;
   gap: 26px;
@@ -63,18 +64,19 @@ const DivPage = () => {
   const [selected, setSelected] = useAtom(selectedDiv);
   const [animate, setAnimate] = useState(false);
   const [searchParams] = useSearchParams();
-  const [streakRatio, setStreakRatio] = useState<number>(0);
+  const [streakRatio, setStreakRatio] = useState<number | null>(null); // null로 초기화
+
   useEffect(() => {
     const fetchData = async () => {
-      const graphData = await fetchGraphData(selected);
+      const graphData = await fetchGraphData(selected); // selected에 맞는 데이터를 요청
       if (isNaN(graphData)) {
         console.log("⚠️ 경고: NaN 값이 반환되었습니다.", graphData);
         setStreakRatio(0); // NaN 값이 오면 기본값으로 0 설정
       } else {
-        setStreakRatio(graphData);
+        setStreakRatio(graphData); // 정상적인 값일 경우 설정
       }
     };
-    fetchData();
+    fetchData(); // selected가 바뀔 때마다 호출하여 최신 데이터 가져오기
   }, [selected]);
 
   // ✅ URL에서 `num` 값을 가져와 `selected` 상태 업데이트
@@ -84,12 +86,14 @@ const DivPage = () => {
       setSelected(Number(numParam)); // ✅ URL에서 가져온 값을 상태에 반영
     }
   }, [searchParams, setSelected]);
+
   // ✅ selected 값이 바뀔 때 애니메이션 트리거
   useEffect(() => {
     setAnimate(false); // 애니메이션 초기화
     setTimeout(() => setAnimate(true), 50); // 약간의 딜레이 후 애니메이션 실행
   }, [selected]);
 
+  // ✅ 조건부 렌더링: streakRatio가 null이 아니면 DonutChart를 렌더링
   return (
     <LayOut>
       <HeadWrapper>Ranking</HeadWrapper>
@@ -104,11 +108,16 @@ const DivPage = () => {
         </AnimatedContainer>
         <Right>
           <AnimatedContainer $animate={animate} key={selected}>
-            <DonutChart
-              value={isNaN(streakRatio) ? 0 : streakRatio}
-              div={selected}
-              duration={isNaN(streakRatio) ? 0 : streakRatio * 20}
-            />
+            {streakRatio !== null ? (
+              <DonutChart
+                key={selected} // Key 속성을 추가하여 컴포넌트가 변경될 때마다 재렌더링 되도록 함
+                value={isNaN(streakRatio) ? 0 : streakRatio}
+                div={selected}
+                duration={isNaN(streakRatio) ? 0 : streakRatio * 2}
+              />
+            ) : (
+              <div>Loading...</div> // 데이터 로딩 중일 때 보여줄 내용
+            )}
           </AnimatedContainer>
         </Right>
       </MainWrapper>
