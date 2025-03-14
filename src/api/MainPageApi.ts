@@ -4,7 +4,7 @@ import apiClient from "./ApiClient"; //  ApiClient.ts에서 axios 인스턴스 �
 export interface StreakData {
   handle: string;
   tier: number;
-  divNum: number;
+  div: number;
   startDate: string;
   totalStreak: number;
 }
