@@ -24,7 +24,7 @@ const Information = styled.div`
 `;
 
 const NumAndId = styled.div`
-  width: 300px;
+  width: 100%;
   display: flex;
   gap: 16px;
   margin-right: 60px;
@@ -57,7 +57,7 @@ const DivNameTack = ({
   };
 
   // ID가 8글자보다 길면 8글자만 표시하고 "..." 추가
-  const truncatedId = id.length > 8 ? `${id.slice(0, 10)}...` : id;
+  const truncatedId = id.length > 7 ? `${id.slice(0, 8)}...` : id;
 
   return (
     <Wrapper $isUnderlined={rank !== 5} onClick={handleClick}>
