@@ -93,12 +93,12 @@ const StreakBox = () => {
       ) : (
         <Individuals>
           {displayedBlocks.map(
-            ({tier, handle, divNum, totalStreak, startDate}) => (
+            ({tier, handle, div, totalStreak, startDate}) => (
               <IndividualBlock
                 key={handle}
                 tier={tier}
                 handle={handle}
-                divNum={divNum}
+                divNum={div}
                 totalStreak={totalStreak}
                 startDate={startDate}
               />
