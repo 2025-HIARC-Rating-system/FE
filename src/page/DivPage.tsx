@@ -14,7 +14,7 @@ import {fetchGraphData} from "../api/RanikingApi";
 const fadeIn = keyframes`
   from {
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translateY(-30px);
   }
   to {
     opacity: 1;
@@ -25,7 +25,7 @@ const fadeIn = keyframes`
 // ✅ 애니메이션이 적용된 컨테이너
 const AnimatedContainer = styled.div<{$animate: boolean}>`
   opacity: 0;
-  animation: ${({$animate}) => ($animate ? fadeIn : "none")} 0.2s ease-in-out
+  animation: ${({$animate}) => ($animate ? fadeIn : "none")} 0.8s ease-in-out
     forwards;
 `;
 
@@ -103,11 +103,13 @@ const DivPage = () => {
           <RankingContainer selected={selected} />
         </AnimatedContainer>
         <Right>
-          <DonutChart
-            value={isNaN(streakRatio) ? 0 : streakRatio}
-            div={selected}
-            duration={isNaN(streakRatio) ? 0 : streakRatio * 20}
-          />
+          <AnimatedContainer $animate={animate} key={selected}>
+            <DonutChart
+              value={isNaN(streakRatio) ? 0 : streakRatio}
+              div={selected}
+              duration={isNaN(streakRatio) ? 0 : streakRatio * 20}
+            />
+          </AnimatedContainer>
         </Right>
       </MainWrapper>
     </LayOut>
