@@ -6,8 +6,9 @@ import RankingContainer from "../block/RankingContainer";
 import {selectedDiv} from "../store/Atom";
 import {useAtom} from "jotai";
 import DonutChart from "../atoms/DounutChart";
-import mockPercent from "../ui/MockPercent";
+
 import {useSearchParams} from "react-router-dom";
+import {fetchGraphData} from "../api/RanikingApi";
 
 // ✅ 페이드인 애니메이션 정의
 const fadeIn = keyframes`
@@ -62,6 +63,19 @@ const DivPage = () => {
   const [selected, setSelected] = useAtom(selectedDiv);
   const [animate, setAnimate] = useState(false);
   const [searchParams] = useSearchParams();
+  const [streakRatio, setStreakRatio] = useState<number>(0);
+  useEffect(() => {
+    const fetchData = async () => {
+      const graphData = await fetchGraphData(selected);
+      if (isNaN(graphData)) {
+        console.log("⚠️ 경고: NaN 값이 반환되었습니다.", graphData);
+        setStreakRatio(0); // NaN 값이 오면 기본값으로 0 설정
+      } else {
+        setStreakRatio(graphData);
+      }
+    };
+    fetchData();
+  }, [selected]);
 
   // ✅ URL에서 `num` 값을 가져와 `selected` 상태 업데이트
   useEffect(() => {
@@ -90,9 +104,9 @@ const DivPage = () => {
         </AnimatedContainer>
         <Right>
           <DonutChart
-            value={mockPercent[selected]}
+            value={isNaN(streakRatio) ? 0 : streakRatio}
             div={selected}
-            duration={mockPercent[selected] * 20}
+            duration={isNaN(streakRatio) ? 0 : streakRatio * 20}
           />
         </Right>
       </MainWrapper>
