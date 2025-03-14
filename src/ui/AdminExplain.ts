@@ -26,5 +26,5 @@ export const Ex: Record<string, string> = {
   "새로운 학기 시작하기(막누르지마셈 초 기 화 됨)": `ex.\n\n[\n{"name":"김동환", "handle":"Brayden"},\n{"name":"이호재","handle":"ghwo336"}\n]`,
   "새로운 시즌 시작하기": `ex.\n\n{"start":"2025-03-02T02:39:36.342Z",\n "end":"2025-03-04T02:39:36.342Z"}`,
   "현재 시즌 중도 마무리": `ex.\n\n2025-03-02T02:39:36.342Z`,
-  "새로운 이벤트 시작하기": `ex.\n\n{"start" : "2025-03-02T02:39:36.342Z",\n "end":"2025-03-04T02:39:36.342Z",\n"eventCategory": DOUBLE_EVENT",\n "tag":"false"}\n\n *eventCategory는 DOUBLE_EVENT,TAG_EVENT 중하나만 입력\n *tag:TagEvent 중일때만 true`,
+  "새로운 이벤트 시작하기": `ex.\n\n{"start" : "2025-03-02T02:39:36.342Z",\n "end":"2025-03-04T02:39:36.342Z",\n"eventCategory": "DOUBLE_EVENT",\n "tag":"false"}\n\n *eventCategory는 DOUBLE_EVENT,TAG_EVENT 중하나만 입력\n *tag:TagEvent 중일때만 true`,
 };
