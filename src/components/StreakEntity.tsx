@@ -3,11 +3,13 @@ import styled from "styled-components";
 import CircularProgress from "../atoms/CircularProgress";
 import Color from "../ui/Color";
 import {NumberToStreakColor} from "../ui/NumberToStreakColor";
+import {useNavigate} from "react-router-dom";
 
 const Wrapper = styled.div`
   width: 460px;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 `;
 const DownWrapper = styled.div`
   margin-top: 16px;
@@ -114,8 +116,12 @@ const StreakEntity = ({
   handle: string;
   startDate: string;
 }) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/search?handle=${handle}`);
+  };
   return (
-    <Wrapper>
+    <Wrapper onClick={handleClick}>
       <Up>
         <InfoEntity handle={handle} div={div} tier={tier} />
         <Devider></Devider>
