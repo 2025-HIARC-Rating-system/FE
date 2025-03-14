@@ -65,7 +65,6 @@ const AdminInput = ({BlockName}: {BlockName: string}) => {
   const [inputValue, setInputValue] = useState("");
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputValue(e.target.value);
-    console.log(inputValue);
   };
   const handleSubmit = async () => {
     try {
