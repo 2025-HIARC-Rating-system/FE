@@ -4,7 +4,7 @@ import apiClient from "./ApiClient"; // ✅ apiClient import
 interface RankingItem {
   handle: string;
   tier: number;
-  isEvent: boolean;
+  event: boolean;
   dailyHiting: number;
   totalHiting: number;
 }
@@ -28,7 +28,7 @@ export const fetchRankingData = async (selected: number) => {
       num: index + 1,
       handle: item.handle,
       tier: item.tier,
-      event: item.isEvent,
+      event: item.event,
       today: item.dailyHiting,
       total: item.totalHiting,
     }));
