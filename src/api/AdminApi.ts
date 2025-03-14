@@ -10,14 +10,14 @@ export const sendAdminInput = async (blockName: string, inputValue: string) => {
   // 🔥 JSON 문자열을 객체 배열로 변환 (단, "새로운 학기 시작하기"일 경우만 배열)
   let parsedData;
   try {
-    if (blockName === "새로운 학기 시작하기") {
+    console.log(blockName);
+    if (blockName === "새로운 학기 시작하기(막누르지마셈 초 기 화 됨)") {
       parsedData = JSON.parse(inputValue);
-
+      console.log(parsedData);
       if (!Array.isArray(parsedData)) {
-        throw new Error("올바른 JSON 배열이 아닙니다.");
+        throw new Error("올바른 JSON 배열이 아닙니다. 여기까진옴?");
       }
-    }
-    if (blockName === "현재 시즌 중도 마무리") {
+    } else if (blockName === "현재 시즌 중도 마무리") {
       parsedData = inputValue;
       console.log(parsedData);
     } else {
@@ -35,17 +35,17 @@ export const sendAdminInput = async (blockName: string, inputValue: string) => {
   // ✅ BlockName에 따라 API 엔드포인트를 동적으로 변경
   const apiUrl = (() => {
     switch (blockName) {
-      case "새로운 학기 시작하기":
+      case "새로운 학기 시작하기(막누르지마셈 초 기 화 됨)":
         console.log("새로운학기시작하기에 보낼게");
-        return "/admin/reset/term";
+        return "/admin/rlaehdghks8383/reset/term";
       case "새로운 시즌 시작하기":
-        return "/admin/season/new";
+        return "/admin/rlaehdghks8383/season/new";
       case "현재 시즌 중도 마무리":
-        return "/admin/season/end";
+        return "/admin/rlaehdghks8383/season/end";
       case "새로운 이벤트 시작하기":
-        return "/admin/event/new";
+        return "/admin/rlaehdghks8383/event/new";
       case "현재 이벤트 중도 마무리":
-        return "/admin/event/end";
+        return "/admin/rlaehdghks8383/event/end";
       default:
         alert("올바르지 않은 BlockName입니다.");
         console.error(`❌ ${blockName}은 유효하지 않은 BlockName입니다.`);
