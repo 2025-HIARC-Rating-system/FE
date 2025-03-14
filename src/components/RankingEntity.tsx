@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Color from "../ui/Color";
 import TierImg from "../ui/TierImg";
 import EventImg from "../assets/eventImg.png";
+import {useNavigate} from "react-router-dom";
 const Wrapper = styled.div`
   height: 40px;
   width: 100%;
@@ -10,6 +11,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   border-bottom: 1px solid ${Color.graySub3};
+  cursor: pointer;
 `;
 const Ranking = styled.div`
   width: 41.29px;
@@ -70,8 +72,12 @@ const RankingEntity = ({
   today: number;
   total: number;
 }) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/search?handle=${handle}`);
+  };
   return (
-    <Wrapper>
+    <Wrapper onClick={handleClick}>
       <Ranking>{ranking}</Ranking>
       <Handle>{handle}</Handle>
       <Tier>
