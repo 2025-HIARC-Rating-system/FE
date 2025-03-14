@@ -12,15 +12,15 @@ const Button = styled.div`
 `;
 
 const Divider = styled.div`
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 7px;
+  padding-right: 9px;
 `;
 
 const DivAndRank = ({divNum, rank}: {divNum: number; rank: number}) => {
   return (
     <Button>
       div{divNum}
-      <Divider>|</Divider>
+      <Divider> | </Divider>
       {rank}th
     </Button>
   );
