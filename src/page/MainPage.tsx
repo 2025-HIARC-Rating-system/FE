@@ -55,14 +55,14 @@ const MainPage = () => {
     <LayOut>
       <Wrapper>
         <MainHeader>Hiting</MainHeader>
-        <AnimatedContainer $delay="0.3s">
+        <AnimatedContainer $delay="0.4s">
           <DivBlock />
         </AnimatedContainer>
         <Down>
-          <AnimatedContainer $delay="0.6s">
+          <AnimatedContainer $delay="0.8s">
             <StreakBox />
           </AnimatedContainer>
-          <AnimatedContainer $delay="0.6s">
+          <AnimatedContainer $delay="0.8s">
             <EventBlock />
           </AnimatedContainer>
         </Down>

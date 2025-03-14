@@ -35,7 +35,7 @@ const InfoEntity = ({
   div: number;
   tier: number;
 }) => {
-  const displayId = handle.length > 10 ? handle.slice(0, 9) + "..." : handle;
+  const displayId = handle.length > 7 ? handle.slice(0, 8) + "..." : handle;
   return (
     <Wrapper>
       <IdWrapper>{displayId}</IdWrapper>
