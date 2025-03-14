@@ -3,11 +3,8 @@ import styled, {keyframes} from "styled-components";
 import LayOut from "../ui/Layout";
 import DivToggleBar from "../components/DivToggleBar";
 import RankingContainer from "../block/RankingContainer";
-import {selectedDiv} from "../store/Atom";
-import {useAtom} from "jotai";
-import DonutChart from "../atoms/DounutChart";
-
 import {useSearchParams} from "react-router-dom";
+import DonutChart from "../atoms/DounutChart";
 import {fetchGraphData} from "../api/RanikingApi";
 
 // ✅ 페이드인 애니메이션 정의
@@ -32,7 +29,6 @@ const AnimatedContainer = styled.div<{$animate: boolean}>`
 const HeadWrapper = styled.div`
   font-size: 35px;
   font-weight: 900;
-
   padding-bottom: 20px;
   @media (max-width: 480px) {
     width: 100%;
@@ -61,39 +57,37 @@ const Right = styled.div`
 `;
 
 const DivPage = () => {
-  const [selected, setSelected] = useAtom(selectedDiv);
+  const [selected, setSelected] = useState<number>(0); // 기본값을 1로 설정
   const [animate, setAnimate] = useState(false);
-  const [searchParams] = useSearchParams();
-  const [streakRatio, setStreakRatio] = useState<number | null>(null); // null로 초기화
+  const [searchParams] = useSearchParams(); // useSearchParams 사용
+  const [streakRatio, setStreakRatio] = useState<number | null>(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const graphData = await fetchGraphData(selected); // selected에 맞는 데이터를 요청
-      if (isNaN(graphData)) {
-        console.log("⚠️ 경고: NaN 값이 반환되었습니다.", graphData);
-        setStreakRatio(0); // NaN 값이 오면 기본값으로 0 설정
-      } else {
-        setStreakRatio(graphData); // 정상적인 값일 경우 설정
-      }
-    };
-    fetchData(); // selected가 바뀔 때마다 호출하여 최신 데이터 가져오기
-  }, [selected]);
-
-  // ✅ URL에서 `num` 값을 가져와 `selected` 상태 업데이트
+  // ✅ selected 값을 URL에서 가져와 설정
   useEffect(() => {
     const numParam = searchParams.get("num");
     if (numParam) {
-      setSelected(Number(numParam)); // ✅ URL에서 가져온 값을 상태에 반영
+      setSelected(Number(numParam)); // URL에서 받은 num 파라미터를 selected에 설정
     }
-  }, [searchParams, setSelected]);
+  }, [searchParams]);
 
-  // ✅ selected 값이 바뀔 때 애니메이션 트리거
   useEffect(() => {
-    setAnimate(false); // 애니메이션 초기화
-    setTimeout(() => setAnimate(true), 50); // 약간의 딜레이 후 애니메이션 실행
+    const fetchData = async () => {
+      const graphData = await fetchGraphData(selected);
+      if (isNaN(graphData)) {
+        console.log("⚠️ 경고: NaN 값이 반환되었습니다.", graphData);
+        setStreakRatio(0);
+      } else {
+        setStreakRatio(graphData);
+      }
+    };
+    fetchData();
   }, [selected]);
 
-  // ✅ 조건부 렌더링: streakRatio가 null이 아니면 DonutChart를 렌더링
+  useEffect(() => {
+    setAnimate(false);
+    setTimeout(() => setAnimate(true), 50); // 애니메이션 초기화 후 딜레이
+  }, [selected]);
+
   return (
     <LayOut>
       <HeadWrapper>Ranking</HeadWrapper>
@@ -101,7 +95,6 @@ const DivPage = () => {
         <DivToggleBar selected={selected} setSelected={setSelected} />
       </ButtonWrapper>
 
-      {/* ✅ 애니메이션 컨테이너 추가 */}
       <MainWrapper>
         <AnimatedContainer $animate={animate} key={selected}>
           <RankingContainer selected={selected} />
@@ -110,13 +103,13 @@ const DivPage = () => {
           <AnimatedContainer $animate={animate} key={selected}>
             {streakRatio !== null ? (
               <DonutChart
-                key={selected} // Key 속성을 추가하여 컴포넌트가 변경될 때마다 재렌더링 되도록 함
+                key={selected}
                 value={isNaN(streakRatio) ? 0 : streakRatio}
                 div={selected}
                 duration={isNaN(streakRatio) ? 0 : streakRatio * 2}
               />
             ) : (
-              <div>Loading...</div> // 데이터 로딩 중일 때 보여줄 내용
+              <div>Loading...</div>
             )}
           </AnimatedContainer>
         </Right>

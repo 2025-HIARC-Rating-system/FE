@@ -11,6 +11,10 @@ interface RankingItem {
 
 // ✅ 랭킹 데이터를 가져오는 함수 (selected 값을 받아서 동적 요청)
 export const fetchRankingData = async (selected: number) => {
+  if (selected === 0) {
+    return []; // selected가 0일 경우 빈 배열을 반환
+  }
+
   try {
     const response = await apiClient.get<{
       data: {streakRatio: number; rankingList: RankingItem[]};
@@ -38,19 +42,27 @@ export const fetchRankingData = async (selected: number) => {
   }
 };
 
+// ✅ 그래프 데이터를 가져오는 함수 (selected 값에 따라 동적 요청)
 export const fetchGraphData = async (selected: number) => {
+  if (selected === 0) {
+    return 100; // selected가 0일 경우 기본값 100 반환
+  }
+
   try {
     const response = await apiClient.get<{
       data: {streakRatio: number; rankingList: RankingItem[]};
     }>(`/rating/${selected}`);
+
     if (!response.data.data) {
-      console.warn("⚠️ 데이터 구조가 예상과 다릅니다. 빈 배열을 반환합니다.");
-      return 100;
+      console.warn(
+        "⚠️ 데이터 구조가 예상과 다릅니다. 기본값 100을 반환합니다."
+      );
+      return 100; // 데이터가 없을 경우 기본값 반환
     }
 
     return response.data.data.streakRatio;
   } catch (err) {
-    console.error("API 요청 실패", err);
-    return 100;
+    console.error("❌ API 요청 실패", err);
+    return 100; // 오류가 발생하면 기본값 100을 반환
   }
 };
