@@ -3,6 +3,7 @@ import LayOut from "../ui/Layout";
 import styled, {keyframes} from "styled-components";
 import StreakEntity from "../components/StreakEntity";
 import {fetchStreakData, StreakData} from "../api/StreakApi"; // ✅ API 모듈 import
+import Color from "../ui/Color";
 
 // 애니메이션 효과
 const fadeIn = keyframes`
@@ -44,11 +45,44 @@ const Wrapper = styled.div`
   }
 `;
 
+// ✅ 페이지네이션 컨트롤 버튼
+const PaginationWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 10px;
+  margin-top: 60px;
+`;
+
+const PageButton = styled.button`
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: ${Color.primary};
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  &:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+  }
+`;
+
+const PageNumber = styled.div`
+  margin-top: 5px;
+`;
+
 const StreakPage = () => {
   const [streakData, setStreakData] = useState<StreakData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [seasonTotal, setSeasonTotal] = useState<number>(0);
+
+  // ✅ 페이지네이션 관련 상태
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10; // 한 페이지에 표시할 개수
+
   useEffect(() => {
     const loadStreakData = async () => {
       setLoading(true);
@@ -66,6 +100,14 @@ const StreakPage = () => {
     loadStreakData();
   }, []);
 
+  // ✅ 현재 페이지에서 보여줄 데이터 계산
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = streakData.slice(indexOfFirstItem, indexOfLastItem);
+
+  // ✅ 총 페이지 수 계산
+  const totalPages = Math.ceil(streakData.length / itemsPerPage);
+
   return (
     <LayOut>
       <Wrapper>
@@ -75,22 +117,43 @@ const StreakPage = () => {
         ) : error ? (
           <p>{error}</p>
         ) : (
-          <AnimatedContainer $delay="0.2s">
-            <MainWrapper>
-              {streakData.map((streak, index) => (
-                <StreakEntity
-                  key={index}
-                  handle={streak.handle}
-                  tier={streak.tier}
-                  div={streak.div}
-                  seasonStreak={streak.seasonStreak}
-                  seasonTotal={seasonTotal}
-                  totalStreak={streak.totalStreak}
-                  startDate={streak.startDate}
-                />
-              ))}
-            </MainWrapper>
-          </AnimatedContainer>
+          <>
+            <AnimatedContainer $delay="0.2s">
+              <MainWrapper>
+                {currentItems.map((streak, index) => (
+                  <StreakEntity
+                    key={index}
+                    handle={streak.handle}
+                    tier={streak.tier}
+                    div={streak.div}
+                    seasonStreak={streak.totalStreak}
+                    seasonTotal={seasonTotal}
+                    totalStreak={streak.totalStreak}
+                    startDate={streak.startDate}
+                  />
+                ))}
+              </MainWrapper>
+            </AnimatedContainer>
+
+            {/* ✅ 페이지네이션 컨트롤 */}
+            <PaginationWrapper>
+              <PageButton
+                onClick={() => setCurrentPage((prev) => prev - 1)}
+                disabled={currentPage === 1}
+              >
+                이전
+              </PageButton>
+              <PageNumber>
+                {currentPage} / {totalPages}
+              </PageNumber>
+              <PageButton
+                onClick={() => setCurrentPage((prev) => prev + 1)}
+                disabled={currentPage === totalPages}
+              >
+                다음
+              </PageButton>
+            </PaginationWrapper>
+          </>
         )}
       </Wrapper>
     </LayOut>
