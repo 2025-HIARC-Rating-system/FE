@@ -61,7 +61,7 @@ const Right = styled.div`
 `;
 
 const Border = styled.div`
-  border: 0.5px solid ${Color.graySub3};
+  border: 1px solid ${Color.graySub3};
   border-radius: 10px;
   padding: 3.5px 8px;
   display: inline-block;
