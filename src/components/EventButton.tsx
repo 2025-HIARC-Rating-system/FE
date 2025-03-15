@@ -1,4 +1,3 @@
-import {useState, useEffect} from "react";
 import styled from "styled-components";
 import Img from "../assets/eventImg.png";
 
@@ -28,22 +27,13 @@ const Right = styled.div`
 `;
 
 const EventButton = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 480);
-
-  // ✅ 화면 크기 변경 감지하여 isMobile 업데이트
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 480);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   return (
     <Button>
       <Left>Event</Left>
-      <Right>{isMobile ? ">" : <img src={Img} alt="이벤트이미지" />}</Right>
+      <Right>
+        {" "}
+        <img src={Img} alt="이벤트이미지" />
+      </Right>
     </Button>
   );
 };
