@@ -94,12 +94,13 @@ const IndividualBlock = ({
   const handleClick = () => {
     navigate(`/search?handle=${handle}`); // ✅ 클릭하면 `/search?handle=아이디`로 이동
   };
+  const handleDisplay = handle.length > 8 ? handle.slice(0, 8) + "..." : handle;
 
   return (
     <Wrapper onClick={handleClick}>
       <Up>
         <TierImg tier={tier} />
-        {handle}
+        {handleDisplay}
         <div>|</div>
         <div>div {divNum}</div>
       </Up>
