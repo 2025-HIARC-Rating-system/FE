@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Color from "../ui/Color";
+
 const Wrapper = styled.div`
   width: 479px;
   height: 166px;
