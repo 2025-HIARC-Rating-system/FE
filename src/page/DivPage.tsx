@@ -44,6 +44,7 @@ const ButtonWrapper = styled.div`
 const MainWrapper = styled.div`
   display: flex;
   gap: 26px;
+  margin-bottom: 40px;
 `;
 
 const Right = styled.div`
