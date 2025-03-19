@@ -60,6 +60,10 @@ const Right = styled.div`
 const Explain = styled.div`
   font-size: 12px;
   color: ${Color.graySub3};
+  @media (max-width: 480px) {
+    margin-bottom: 20px;
+    margin-left: 10px;
+  }
 `;
 
 const DivPage = () => {
