@@ -3,7 +3,12 @@ import DivBlock from "../block/DivBlock";
 import StreakBox from "../block/StreakBox";
 import EventBlock from "../block/EventBlock";
 import styled, {keyframes} from "styled-components";
+import {useEffect} from "react";
+import {useAtom} from "jotai";
+import {fetchHitingData} from "../api/MainPageApi";
+import {loadingAtom, hitingDataAtom} from "../store/Atom";
 
+// ✅ 페이드인 애니메이션 정의
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -31,7 +36,6 @@ const MainHeader = styled.div`
   font-size: 35px;
   font-weight: 800;
   text-align: left;
-
   @media (max-width: 480px) {
     width: 100%;
     margin-left: 16px;
@@ -41,7 +45,6 @@ const MainHeader = styled.div`
 const Down = styled.div`
   display: flex;
   gap: 20px;
-
   @media (max-width: 480px) {
     flex-direction: column-reverse;
     gap: 52px;
@@ -51,18 +54,40 @@ const Down = styled.div`
 `;
 
 const MainPage = () => {
+  const [loading, setLoading] = useAtom(loadingAtom);
+  const [hitingData, setHitingData] = useAtom(hitingDataAtom);
+
+  useEffect(() => {
+    if (!loading) return; // ✅ 이미 로딩된 경우 API 요청 방지
+
+    const fetchData = async () => {
+      try {
+        const data = await fetchHitingData();
+        setHitingData(data);
+        console.log(hitingData);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [loading]); // ✅ 처음 로딩될 때만 실행
+
   return (
     <LayOut>
       <Wrapper>
         <MainHeader>Hiting</MainHeader>
-        <AnimatedContainer $delay="0.4s">
+
+        <AnimatedContainer $delay="0.8s">
           <DivBlock />
         </AnimatedContainer>
         <Down>
-          <AnimatedContainer $delay="0.8s">
+          <AnimatedContainer $delay="1s">
             <StreakBox />
           </AnimatedContainer>
-          <AnimatedContainer $delay="0.8s">
+          <AnimatedContainer $delay="1s">
             <EventBlock />
           </AnimatedContainer>
         </Down>

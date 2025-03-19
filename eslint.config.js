@@ -18,7 +18,8 @@ export default tseslint.config(
       "react-refresh": reactRefresh,
     },
     rules: {
-      "no-unused-vars": ["warn", {varsIgnorePattern: "^styled$"}],
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": "off",
       "prettier/prettier": "off",
     },
   }

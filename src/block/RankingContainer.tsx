@@ -24,7 +24,7 @@ const RankingContiner = ({selected}: {selected: number}) => {
       total: number;
     }[]
   >([]);
-  const [loading, setLoading] = useState<boolean>(true);
+
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -34,15 +34,12 @@ const RankingContiner = ({selected}: {selected: number}) => {
         setRankingData(data);
       } catch (err) {
         setError(err instanceof Error ? err.message : "알 수 없는 오류 발생");
-      } finally {
-        setLoading(false);
       }
     };
 
     loadRankingData();
   }, [selected]);
 
-  if (loading) return <p>로딩 중...</p>;
   if (error) return <p>오류 발생: {error}</p>;
 
   return (
