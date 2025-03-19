@@ -20,12 +20,11 @@ const fadeIn = keyframes`
 `;
 
 // ✅ 애니메이션이 적용된 컨테이너
-const AnimatedContainer = styled.div<{$animate: boolean}>`
+const AnimatedContainer = styled.div<{$animate: boolean; $duration?: string}>`
   opacity: 0;
-  animation: ${({$animate}) => ($animate ? fadeIn : "none")} 0.8s ease-in-out
-    forwards;
+  animation: ${({$animate, $duration}) => ($animate ? fadeIn : "none")}
+    ${({$duration}) => $duration || "0s"} ease-in-out forwards;
 `;
-
 const HeadWrapper = styled.div`
   font-size: 35px;
   font-weight: 900;
@@ -96,11 +95,11 @@ const DivPage = () => {
       </ButtonWrapper>
 
       <MainWrapper>
-        <AnimatedContainer $animate={animate} key={selected}>
+        <AnimatedContainer $animate={animate} $duration="1s">
           <RankingContainer selected={selected} />
         </AnimatedContainer>
         <Right>
-          <AnimatedContainer $animate={animate} key={selected}>
+          <AnimatedContainer $animate={animate} key={selected} $duration="3s">
             {streakRatio !== null ? (
               <DonutChart
                 key={selected}
