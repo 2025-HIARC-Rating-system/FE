@@ -1,6 +1,6 @@
 import {useAtom} from "jotai";
 import styled from "styled-components";
-import {DivData, hitingDataAtom, loadingAtom} from "../store/Atom";
+import {DivData, hitingDataAtom} from "../store/Atom";
 import Color from "../ui/Color";
 import ArrowButton from "../atoms/ArrowButton";
 import DivNameTack from "./DivNameTack";

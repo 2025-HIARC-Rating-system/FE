@@ -22,7 +22,7 @@ const fadeIn = keyframes`
 // ✅ 애니메이션이 적용된 컨테이너
 const AnimatedContainer = styled.div<{$animate: boolean; $duration?: string}>`
   opacity: 0;
-  animation: ${({$animate, $duration}) => ($animate ? fadeIn : "none")}
+  animation: ${({$animate}) => ($animate ? fadeIn : "none")}
     ${({$duration}) => $duration || "0s"} ease-in-out forwards;
 `;
 const HeadWrapper = styled.div`
@@ -99,7 +99,7 @@ const DivPage = () => {
           <RankingContainer selected={selected} />
         </AnimatedContainer>
         <Right>
-          <AnimatedContainer $animate={animate} key={selected} $duration="3s">
+          <AnimatedContainer $animate={animate} key={selected} $duration="2s">
             {streakRatio !== null ? (
               <DonutChart
                 key={selected}
