@@ -6,6 +6,7 @@ import RankingContainer from "../block/RankingContainer";
 import {useSearchParams} from "react-router-dom";
 import DonutChart from "../atoms/DounutChart";
 import {fetchGraphData} from "../api/RanikingApi";
+import Color from "../ui/Color";
 
 // ✅ 페이드인 애니메이션 정의
 const fadeIn = keyframes`
@@ -56,6 +57,11 @@ const Right = styled.div`
   }
 `;
 
+const Explain = styled.div`
+  font-size: 12px;
+  color: ${Color.graySub3};
+`;
+
 const DivPage = () => {
   const [selected, setSelected] = useState<number>(0); // 기본값을 1로 설정
   const [animate, setAnimate] = useState(false);
@@ -91,10 +97,10 @@ const DivPage = () => {
   return (
     <LayOut>
       <HeadWrapper>Ranking</HeadWrapper>
+      <Explain>* 점수는 15분 안으로 반영됩니다.</Explain>
       <ButtonWrapper>
         <DivToggleBar selected={selected} setSelected={setSelected} />
       </ButtonWrapper>
-
       <MainWrapper>
         <AnimatedContainer $animate={animate} $duration="1s">
           <RankingContainer selected={selected} />
