@@ -78,7 +78,7 @@ const MainPage = () => {
   return (
     <LayOut>
       <Wrapper>
-        <MainHeader>Hiting</MainHeader>
+        <MainHeader>하이팅</MainHeader>
 
         <AnimatedContainer $delay="0.8s">
           <DivBlock />

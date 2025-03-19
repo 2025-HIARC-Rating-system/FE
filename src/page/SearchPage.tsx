@@ -14,6 +14,7 @@ const HandleWrapper = styled.div`
   font-size: 35px;
   margin-bottom: 24px;
   font-weight: 800;
+  cursor: pointer;
 `;
 
 const MainWrapper = styled.div`
@@ -72,9 +73,13 @@ const SearchPage = () => {
     }
   };
 
+  const onClick = () => {
+    window.open(`https://solved.ac/profile/${handle}`, "_blank");
+  };
+
   return (
     <LayOut>
-      <HandleWrapper>{handle}</HandleWrapper>
+      <HandleWrapper onClick={onClick}>{handle}</HandleWrapper>
 
       {loading && <Message>로딩 중...</Message>}
       {error && <Message>{error}</Message>}
