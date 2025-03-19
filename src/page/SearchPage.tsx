@@ -33,7 +33,7 @@ const Explain = styled.div`
 
 const Message = styled.div`
   font-size: 20px;
-  color: red;
+  color: black;
   font-weight: bold;
 `;
 
