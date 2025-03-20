@@ -92,7 +92,7 @@ const Up = styled.div`
 const Devider = styled.div`
   width: 98%;
   border-bottom: 1px solid ${Color.primary};
-  margin-top: -1px; /* ✅ 위 border와 겹쳐서 하나처럼 보이게 조정 */
+  margin-top: -1px;
   margin-left: 12px;
   @media (max-width: 480px) {
     width: 92%;

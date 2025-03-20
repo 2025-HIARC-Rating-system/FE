@@ -85,9 +85,9 @@ const RankingEntity = ({
       </Tier>
       <Event>{event && <img src={EventImg} />}</Event>
       <Today>
-        <div className="letter">{today}</div>
+        <div className="letter">{today < 0 ? 0 : today}</div>
       </Today>
-      <Total>{total}</Total>
+      <Total>{total < 0 ? 0 : total}</Total>
     </Wrapper>
   );
 };
