@@ -91,15 +91,15 @@ const SearchedHitingEntity = ({
       <DownWrapper>
         <Left>
           <Border>누적</Border>
-          <Score>{totalHiting}</Score>
+          <Score>{totalHiting < 0 ? 0 : totalHiting}</Score>
         </Left>
         <Middle>
           <Border>이번 시즌</Border>
-          <Score>{seasonHiting}</Score>
+          <Score>{seasonHiting < 0 ? 0 : seasonHiting}</Score>
         </Middle>
         <Right>
           <Border>오늘</Border>
-          <Score>{dailyHiting}</Score>
+          <Score>{dailyHiting < 0 ? 0 : dailyHiting}</Score>
         </Right>
       </DownWrapper>
     </Wrapper>

@@ -68,7 +68,7 @@ const DivNameTack = ({
         </NumAndId>
         <TierImg tier={tier} />
       </Information>
-      {totalHiting}
+      {totalHiting < 0 ? 0 : totalHiting}
     </Wrapper>
   );
 };

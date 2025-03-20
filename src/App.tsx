@@ -1,6 +1,5 @@
 import {Routes, Route} from "react-router-dom";
 import MainPage from "./page/MainPage";
-
 import DivPage from "./page/DivPage";
 import StreakPage from "./page/StreakPage";
 import SearchPage from "./page/SearchPage";

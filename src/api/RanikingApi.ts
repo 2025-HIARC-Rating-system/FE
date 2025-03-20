@@ -45,7 +45,7 @@ export const fetchRankingData = async (selected: number) => {
 // ✅ 그래프 데이터를 가져오는 함수 (selected 값에 따라 동적 요청)
 export const fetchGraphData = async (selected: number) => {
   if (selected === 0) {
-    return 100; // selected가 0일 경우 기본값 100 반환
+    return 0; // selected가 0일 경우 기본값 100 반환
   }
 
   try {
