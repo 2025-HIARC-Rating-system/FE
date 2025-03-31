@@ -77,7 +77,7 @@ const MainPage = () => {
   const CheckDouble = useRef(false);
   useEffect(() => {
     if (!CheckDouble.current) {
-      alert("pwned by IHHH");
+      alert("pwned by IHHH 만우절 이벤트입니다 ㅎㅎ");
       CheckDouble.current = true;
     }
   }, []);
