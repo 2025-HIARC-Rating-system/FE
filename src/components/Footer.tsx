@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import reallogo from "./../assets/hiarc-reallogo.png";
+// import reallogo from "./../assets/hiarc-reallogo.png";
 import FontStyle from "../ui/FontStyle";
 import ContactInfo from "../atoms/MediaListCell";
 import IHHHLOGO from "../assets/IHHHLOGO.png";
