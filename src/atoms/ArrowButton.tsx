@@ -12,6 +12,7 @@ const Button = styled.button`
   cursor: pointer;
   padding: 3px 15px;
   align-items: center;
+  color: red;
 `;
 
 const DivContainer = styled.div`
@@ -29,7 +30,8 @@ const ArrowButton = ({divNum}: {divNum: number}) => {
   };
   return (
     <Button onClick={handleClick}>
-      <DivContainer>Div{divNum}</DivContainer>
+      {/* <DivContainer>Div{divNum}</DivContainer> */}
+      <DivContainer>11011011100110110101</DivContainer>
       <ArrowContainer>{">"}</ArrowContainer>
     </Button>
   );

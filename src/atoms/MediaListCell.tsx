@@ -9,7 +9,8 @@ const ContactContainer = styled.div`
   gap: 6px;
   font-size: 12px;
   font-weight: 500;
-  color: ${Color?.primary || "#42a5f5"};
+  /* color: ${Color?.primary || "#42a5f5"}; */
+  color: red;
 
   width: 25%;
   @media (max-width: 800px) {
