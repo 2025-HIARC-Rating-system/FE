@@ -20,13 +20,6 @@ const Wrapper = styled.div`
     margin-left: 1px;
     width: 80%;
     font-size: 14px;
-    background-color: gray;
-    color: red;
-
-    //이벤트
-    &::placeholder {
-      color: red; // 원하는 색으로 바꿔줘
-    }
   }
 
   img {
@@ -59,7 +52,7 @@ const HeaderInput = () => {
       <img src={Img} alt="검색 아이콘" onClick={handleSearch} />
       <input
         type="text"
-        placeholder="pwned by IHHH"
+        placeholder="백준 핸들 검색"
         className="Input"
         value={inputValue}
         onChange={handleInputChange}

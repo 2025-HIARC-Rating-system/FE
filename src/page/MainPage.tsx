@@ -1,13 +1,12 @@
 import LayOut from "../ui/Layout";
 import DivBlock from "../block/DivBlock";
 import StreakBox from "../block/StreakBox";
-// import EventBlock from "../block/EventBlock";
+import EventBlock from "../block/EventBlock";
 import styled, {keyframes} from "styled-components";
-import {useEffect, useRef} from "react";
+import {useEffect} from "react";
 import {useAtom} from "jotai";
 import {fetchHitingData} from "../api/MainPageApi";
 import {loadingAtom, hitingDataAtom} from "../store/Atom";
-import IHHHIMG from "../assets/IHHHLOGO.png";
 
 // ✅ 페이드인 애니메이션 정의
 const fadeIn = keyframes`
@@ -33,19 +32,10 @@ const Wrapper = styled.div`
   gap: 24px;
 `;
 
-//만우절 블링크
-const blink = keyframes`
-  0% { opacity: 1; }
-  50% { opacity: 0; }
-  100% { opacity: 1; }
-`;
-
 const MainHeader = styled.div`
-  color: red;
   font-size: 35px;
   font-weight: 800;
   text-align: left;
-  animation: ${blink} 0.5ms infinite;
 
   @media (max-width: 480px) {
     width: 100%;
@@ -65,22 +55,9 @@ const Down = styled.div`
   }
 `;
 
-//만우절
-const StyleImg = styled.img`
-  width: 250px;
-  height: 340px;
-`;
-
 const MainPage = () => {
   const [loading, setLoading] = useAtom(loadingAtom);
   const [hitingData, setHitingData] = useAtom(hitingDataAtom);
-  const CheckDouble = useRef(false);
-  useEffect(() => {
-    if (!CheckDouble.current) {
-      alert("pwned by IHHH 만우절 이벤트입니다 ㅎㅎ");
-      CheckDouble.current = true;
-    }
-  }, []);
 
   useEffect(() => {
     if (!loading) return; // ✅ 이미 로딩된 경우 API 요청 방지
@@ -103,7 +80,7 @@ const MainPage = () => {
   return (
     <LayOut>
       <Wrapper>
-        <MainHeader>Institute of Hongik Hacking Honor</MainHeader>
+        <MainHeader>Hiting</MainHeader>
 
         <AnimatedContainer $delay="0.8s">
           <DivBlock />
@@ -113,8 +90,7 @@ const MainPage = () => {
             <StreakBox />
           </AnimatedContainer>
           <AnimatedContainer $delay="1s">
-            {/* <EventBlock /> */}
-            <StyleImg src={IHHHIMG} alt="" />
+            <EventBlock />
           </AnimatedContainer>
         </Down>
       </Wrapper>
