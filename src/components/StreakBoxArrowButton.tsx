@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: red;
+
   cursor: pointer;
   .left {
     margin-left: 16px;
@@ -29,8 +29,8 @@ const StreakBoxArrowButton = () => {
   };
   return (
     <Wrapper onClick={handleClick}>
-      {/* <div className="left">Streak</div> */}
-      <div className="left">10101000111010101</div>
+      <div className="left">Streak</div>
+
       <div className="right">{`>`}</div>
     </Wrapper>
   );

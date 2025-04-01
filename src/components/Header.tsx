@@ -26,8 +26,7 @@ const Wrapper = styled.div`
 `;
 
 const HIARC = styled.a`
-  color: red;
-  /* color: ${Color.primary}; */
+  color: ${Color.primary};
   font-size: 20px;
   text-decoration: none;
   white-space: nowrap;
@@ -92,14 +91,12 @@ const Header = () => {
   return (
     <Wrapper>
       {/* ✅ 480px 이상일 때 개별 렌더링 */}
-      {!isMobile && (
-        <HIARC href="https://hiarchomepage.web.app/">pwned by IHHH</HIARC>
-      )}
+      {!isMobile && <HIARC href="https://hiarchomepage.web.app/">HI-ARC</HIARC>}
 
       {/* ✅ 480px 이하에서만 HIARC + Home 이미지를 묶어서 렌더링 */}
       {isMobile && (
         <MobileHeaderWrapper>
-          <HIARC href="https://hiarchomepage.web.app/">pwned by IHHH</HIARC>
+          <HIARC href="https://hiarchomepage.web.app/">HI-ARC</HIARC>
           <HitingWrapper onClick={() => navigate("/")}>
             <img src={Home} alt="home" />
           </HitingWrapper>

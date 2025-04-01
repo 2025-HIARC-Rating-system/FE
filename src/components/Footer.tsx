@@ -1,8 +1,7 @@
 import styled from "styled-components";
-// import reallogo from "./../assets/hiarc-reallogo.png";
+import reallogo from "./../assets/hiarc-reallogo.png";
 import FontStyle from "../ui/FontStyle";
 import ContactInfo from "../atoms/MediaListCell";
-import IHHHLOGO from "../assets/IHHHLOGO.png";
 
 const Wrapper = styled.div`
   display: flex;
@@ -25,8 +24,7 @@ const FooterWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   font-size: 15px;
-  /* color: #00aaff; */
-  color: red;
+  color: #00aaff;
   text-align: left;
   margin-top: 50px;
 
@@ -81,10 +79,10 @@ const Footer = () => {
     <Wrapper>
       <FooterWrapper>
         <IntroduceWrapper>
-          <LogoImage src={IHHHLOGO} alt="HI-ARC 로고" />
+          <LogoImage src={reallogo} alt="HI-ARC 로고" />
           <IntroWrapper>
-            <IntroTitle>IHHH</IntroTitle>
-            <IntroText>홍익대학교 컴퓨터공학과 해킹 보안 학회</IntroText>
+            <IntroTitle>HI-ARC 하이아크</IntroTitle>
+            <IntroText>홍익대학교 컴퓨터공학과 알고리즘학회</IntroText>
           </IntroWrapper>
         </IntroduceWrapper>
 
