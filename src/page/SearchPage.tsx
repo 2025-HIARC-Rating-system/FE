@@ -11,12 +11,6 @@ import DivAndRank from "../components/DivAndRank";
 import {fetchSearchData, SearchData} from "../api/SearchApi"; // ✅ API 함수 import
 import SolvedButton from "../components/SolvedButton";
 
-const Solved = styled.img`
-  width: 40px;
-  height: 30px;
-  border-radius: 18px;
-`;
-
 const HandleWrapper = styled.div`
   font-size: 35px;
   margin-bottom: 24px;
