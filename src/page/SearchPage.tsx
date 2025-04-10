@@ -9,6 +9,13 @@ import SearchedHitingEntity from "../components/SearchedHitingEntity";
 import TierButton from "../components/TierButton";
 import DivAndRank from "../components/DivAndRank";
 import {fetchSearchData, SearchData} from "../api/SearchApi"; // ✅ API 함수 import
+import SolvedButton from "../components/SolvedButton";
+
+const Solved = styled.img`
+  width: 40px;
+  height: 30px;
+  border-radius: 18px;
+`;
 
 const HandleWrapper = styled.div`
   font-size: 35px;
@@ -89,6 +96,7 @@ const SearchPage = () => {
           <Explain>
             <TierButton tier={data.tier} />
             <DivAndRank divNum={data.divNum} rank={data.rank} />
+            <SolvedButton handle={handle} />
           </Explain>
           <MainWrapper>
             <SearchedStreakEntity
