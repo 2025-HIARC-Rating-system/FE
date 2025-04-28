@@ -8,7 +8,7 @@ import SearchedStreakEntity from "../components/SearchedStreakEnity";
 import SearchedHitingEntity from "../components/SearchedHitingEntity";
 import TierButton from "../components/TierButton";
 import DivAndRank from "../components/DivAndRank";
-import {fetchSearchData, SearchData} from "../api/SearchApi"; // ✅ API 함수 import
+import {fetchSearchData, SearchData} from "../api/SearchApi";
 import SolvedButton from "../components/SolvedButton";
 
 const HandleWrapper = styled.div`
@@ -64,11 +64,11 @@ const SearchPage = () => {
       if (result) {
         setData(result);
       } else {
-        setError("⚠️ 해당 핸들의 정보를 찾을 수 없습니다.");
+        setError("해당 핸들의 정보를 찾을 수 없습니다.");
       }
     } catch (err) {
-      setError("❌ 데이터 불러오는 중 오류 발생.");
-      console.error("❌ 데이터 불러오는 중 오류 발생:", err);
+      setError(" 데이터 불러오는 중 오류 발생.");
+      console.error("데이터 불러오는 중 오류 발생:", err);
     } finally {
       setLoading(false);
     }

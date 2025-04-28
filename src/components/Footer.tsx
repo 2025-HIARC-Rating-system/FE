@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%; /* 부모와 동일한 너비로 설정 */
+  width: 100%;
 
   @media (max-width: 800px) {
     align-items: flex-start;
@@ -18,8 +18,8 @@ const Wrapper = styled.div`
 `;
 
 const FooterWrapper = styled.div`
-  width: 100%; /* 부모와 동일한 너비로 설정 */
-  box-sizing: border-box; /* 패딩과 보더를 포함하여 크기를 계산 */
+  width: 100%;
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -36,7 +36,7 @@ const FooterWrapper = styled.div`
 
 const IntroduceWrapper = styled.div`
   display: flex;
-  flex: 1; /* IntroduceWrapper가 더 많은 공간을 차지하도록 설정 */
+  flex: 1;
 `;
 
 const LogoImage = styled.img`
@@ -52,7 +52,6 @@ const IntroText = styled.div`
   ${FontStyle.body1Regular}
   white-space: nowrap;
   @media (max-width: 800px) {
-    /* width <= 800px에서만 적용 */
     font-size: 14px;
     margin-bottom: 14px;
   }
@@ -63,7 +62,6 @@ const IntroTitle = styled.h4`
   ${FontStyle.body1Regular}
   white-space: nowrap;
   @media (max-width: 800px) {
-    /* width <= 800px에서만 적용 */
     font-size: 20px;
   }
 `;

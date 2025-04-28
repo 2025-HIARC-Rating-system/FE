@@ -50,7 +50,7 @@ const Button = styled.button`
   font-weight: 700;
   padding: 12px;
   cursor: pointer;
-  :hover {
+  &:hover {
     background-color: #0af;
   }
 `;
@@ -63,11 +63,13 @@ const BottomWrapper = styled.div`
 `;
 const AdminInput = ({BlockName}: {BlockName: string}) => {
   const [inputValue, setInputValue] = useState("");
+  const [loading, setLoading] = useState(false);
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputValue(e.target.value);
   };
   const handleSubmit = async () => {
     try {
+      setLoading(true);
       const response = await sendAdminInput(BlockName, inputValue);
       if (response) {
         setInputValue("");
@@ -75,6 +77,8 @@ const AdminInput = ({BlockName}: {BlockName: string}) => {
     } catch (error) {
       alert("전송 실패");
       console.log("실패", error);
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -85,7 +89,9 @@ const AdminInput = ({BlockName}: {BlockName: string}) => {
       <InputBox>
         <Input value={inputValue} onChange={handleInputChange} />
         <BottomWrapper>
-          <Button onClick={handleSubmit}>입력하기</Button>
+          <Button onClick={handleSubmit}>
+            {loading ? "전송중..." : "입력하기"}
+          </Button>
         </BottomWrapper>
       </InputBox>
     </Wrapper>

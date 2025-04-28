@@ -2,10 +2,9 @@ import {useEffect, useState} from "react";
 import LayOut from "../ui/Layout";
 import styled, {keyframes} from "styled-components";
 import StreakEntity from "../components/StreakEntity";
-import {fetchStreakData, StreakData} from "../api/StreakApi"; // ✅ API 모듈 import
+import {fetchStreakData, StreakData} from "../api/StreakApi";
 import Color from "../ui/Color";
 
-// 애니메이션 효과
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -46,7 +45,6 @@ const Wrapper = styled.div`
   }
 `;
 
-// ✅ 페이지네이션 컨트롤 버튼
 const PaginationWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -80,9 +78,8 @@ const StreakPage = () => {
   const [error, setError] = useState<string | null>(null);
   const [seasonTotal, setSeasonTotal] = useState<number>(0);
 
-  // ✅ 페이지네이션 관련 상태
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10; // 한 페이지에 표시할 개수
+  const itemsPerPage = 10;
 
   useEffect(() => {
     const loadStreakData = async () => {
@@ -101,12 +98,10 @@ const StreakPage = () => {
     loadStreakData();
   }, []);
 
-  // ✅ 현재 페이지에서 보여줄 데이터 계산
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = streakData.slice(indexOfFirstItem, indexOfLastItem);
 
-  // ✅ 총 페이지 수 계산
   const totalPages = Math.ceil(streakData.length / itemsPerPage);
 
   return (
@@ -136,7 +131,6 @@ const StreakPage = () => {
               </MainWrapper>
             </AnimatedContainer>
 
-            {/* ✅ 페이지네이션 컨트롤 */}
             <PaginationWrapper>
               <PageButton
                 onClick={() => setCurrentPage((prev) => prev - 1)}

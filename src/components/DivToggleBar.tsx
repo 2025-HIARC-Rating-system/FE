@@ -1,8 +1,8 @@
-import {useNavigate} from "react-router-dom"; // useNavigate import
+import {useNavigate} from "react-router-dom";
 import styled from "styled-components";
 import DivButton from "../block/DivButton";
 import Color from "../ui/Color";
-import {Dispatch, SetStateAction} from "react"; // 이 부분 추가
+import {Dispatch, SetStateAction} from "react";
 
 const Wrapper = styled.div`
   display: flex;
@@ -18,14 +18,14 @@ const DivToggleBar = ({
   setSelected,
   selected,
 }: {
-  setSelected: Dispatch<SetStateAction<number>>; // 올바르게 타입을 지정
+  setSelected: Dispatch<SetStateAction<number>>;
   selected: number;
 }) => {
-  const navigate = useNavigate(); // navigate 선언
+  const navigate = useNavigate();
 
   const handleClick = (div: number) => {
-    setSelected(div); // 상태 업데이트
-    navigate(`/div?num=${div}`); // URL 업데이트
+    setSelected(div);
+    navigate(`/div?num=${div}`);
   };
 
   return (

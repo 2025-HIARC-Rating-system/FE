@@ -9,7 +9,7 @@ const Wrapper = styled.button<{$isSelected: boolean}>`
   border-radius: 18px;
   border: none;
   padding: 6px 14px;
-  white-space: nowrap; /* ⬅️ 줄바꿈 방지 */
+  white-space: nowrap;
   color: ${({$isSelected}) => ($isSelected ? Color.primary : "white")};
   background-color: ${({$isSelected}) =>
     $isSelected ? "white" : Color.primary};

@@ -82,16 +82,16 @@ const Days = styled.div`
     margin-bottom: 4px;
   }
 `;
-// ✅ 🔹 추가: 스트릭 네모 박스 스타일
+
 const StreakGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(20, 13px); /* ✅ 한 줄에 최대 20개 */
+  grid-template-columns: repeat(20, 13px);
   gap: 1px;
-  width: fit-content; /* ✅ 박스 개수에 맞춰 너비 자동 조정 */
-  max-width: 273px; /* ✅ 최대 너비 설정 */
+  width: fit-content;
+  max-width: 273px;
   height: fit-content;
   @media (max-width: 480px) {
-    grid-template-columns: repeat(10, 13px); /* ✅ 한 줄에 최대 10개 */
+    grid-template-columns: repeat(10, 13px);
     max-width: 139px;
   }
 `;
@@ -147,7 +147,6 @@ const SearchedStreakEntity = ({
               ))}
             </StreakGrid>
           </RightDown>
-          {/* ✅ ✅ 스트릭 칸 추가 */}
         </Right>
       </DownWrapper>
     </Wrapper>

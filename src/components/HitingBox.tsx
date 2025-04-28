@@ -32,9 +32,8 @@ const TackContainer = styled.div`
 `;
 
 const HitingBox = ({divNum}: {divNum: number}) => {
-  const [hitingData] = useAtom(hitingDataAtom); // ✅ 전역 상태에서 데이터 가져오기
+  const [hitingData] = useAtom(hitingDataAtom);
 
-  // ✅ divNum에 따라 올바른 데이터 리스트 선택
   const divList: DivData[] =
     divNum === 1
       ? hitingData.div1List

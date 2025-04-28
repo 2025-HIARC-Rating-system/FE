@@ -22,7 +22,7 @@ const Left = styled.div`
 `;
 
 const Right = styled.div`
-  font-size: 20px; /* ✅ 모바일에서 '>' 크기 조정 */
+  font-size: 20px;
   font-weight: bold;
 `;
 

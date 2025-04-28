@@ -8,7 +8,6 @@ import DonutChart from "../atoms/DounutChart";
 import {fetchGraphData} from "../api/RanikingApi";
 import Color from "../ui/Color";
 
-// ✅ 페이드인 애니메이션 정의
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -20,7 +19,6 @@ const fadeIn = keyframes`
   }
 `;
 
-// ✅ 애니메이션이 적용된 컨테이너
 const AnimatedContainer = styled.div<{$animate: boolean; $duration?: string}>`
   opacity: 0;
   animation: ${({$animate}) => ($animate ? fadeIn : "none")}
@@ -67,16 +65,15 @@ const Explain = styled.div`
 `;
 
 const DivPage = () => {
-  const [selected, setSelected] = useState<number>(0); // 기본값을 1로 설정
+  const [selected, setSelected] = useState<number>(0);
   const [animate, setAnimate] = useState(false);
-  const [searchParams] = useSearchParams(); // useSearchParams 사용
+  const [searchParams] = useSearchParams();
   const [streakRatio, setStreakRatio] = useState<number | null>(null);
 
-  // ✅ selected 값을 URL에서 가져와 설정
   useEffect(() => {
     const numParam = searchParams.get("num");
     if (numParam) {
-      setSelected(Number(numParam)); // URL에서 받은 num 파라미터를 selected에 설정
+      setSelected(Number(numParam));
     }
   }, [searchParams]);
 
@@ -84,7 +81,7 @@ const DivPage = () => {
     const fetchData = async () => {
       const graphData = await fetchGraphData(selected);
       if (isNaN(graphData)) {
-        console.log("⚠️ 경고: NaN 값이 반환되었습니다.", graphData);
+        console.log("경고: NaN 값이 반환되었습니다.", graphData);
         setStreakRatio(0);
       } else {
         setStreakRatio(graphData);
@@ -95,7 +92,7 @@ const DivPage = () => {
 
   useEffect(() => {
     setAnimate(false);
-    setTimeout(() => setAnimate(true), 50); // 애니메이션 초기화 후 딜레이
+    setTimeout(() => setAnimate(true), 50);
   }, [selected]);
 
   return (
