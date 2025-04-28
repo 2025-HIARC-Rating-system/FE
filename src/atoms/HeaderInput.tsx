@@ -1,15 +1,15 @@
 import styled from "styled-components";
 import {useState} from "react";
 import {useAtom} from "jotai";
-import {useNavigate} from "react-router-dom"; // 🚀 useNavigate 추가
-import {handleAtom} from "../store/Atom"; // Jotai 상태 불러오기
+import {useNavigate} from "react-router-dom";
+import {handleAtom} from "../store/Atom";
 import Img from "./../assets/InputImg.png";
 import Color from "../ui/Color";
 
 const Wrapper = styled.div`
   width: 339px;
   display: flex;
-  border: 1px solid ${Color.primary}; // ✅ props 없이 직접 사용
+  border: 1px solid ${Color.primary};
   border-radius: 18px;
   height: 34px;
   align-items: center;

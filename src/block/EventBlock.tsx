@@ -28,9 +28,8 @@ const MainContainer = styled.div`
 `;
 
 const EventBlock = () => {
-  const [hitingData] = useAtom(hitingDataAtom); // ✅ 전역 상태에서 데이터 가져오기
+  const [hitingData] = useAtom(hitingDataAtom);
 
-  // ✅ eventList에서 최대 6개만 가져오기
   const eventList = hitingData.eventList?.slice(0, 6) || [];
 
   return (

@@ -43,9 +43,9 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
   height = 48,
   strokeColor,
 }) => {
-  const size = Math.min(width, height); // ✅ width, height 중 작은 값 사용
-  const strokeWidth = size * 0.15; // ✅ 원 크기에 맞게 `stroke-width` 동적 설정
-  const radius = size / 2 - strokeWidth / 2; // ✅ 원이 잘리지 않도록 반지름 조정
+  const size = Math.min(width, height);
+  const strokeWidth = size * 0.15;
+  const radius = size / 2 - strokeWidth / 2;
   const circumference = 2 * Math.PI * radius;
   const percent = (value / maxValue) * 100;
   const dashOffset = circumference - (percent / 100) * circumference;
@@ -53,14 +53,14 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
   return (
     <ProgressWrapper style={{width: size, height: size}}>
       <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
-        {/* ✅ 배경 원 */}
+        {/* 배경 원 */}
         <CircleBackground
           cx={size / 2}
           cy={size / 2}
           r={radius}
           strokeWidth={strokeWidth}
         />
-        {/* ✅ 진행 원 */}
+        {/*  진행 원 */}
         <CircleProgress
           cx={size / 2}
           cy={size / 2}
@@ -71,7 +71,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
           strokeColor={strokeColor}
         />
 
-        {/* ✅ 중앙 텍스트 */}
+        {/*  중앙 텍스트 */}
         <ProgressText x="50%" y="52%" dy="3%">
           <tspan fontSize={`${size * 0.23}px`} fontWeight="bold">
             {value}

@@ -8,7 +8,6 @@ import {useAtom} from "jotai";
 import {fetchHitingData} from "../api/MainPageApi";
 import {loadingAtom, hitingDataAtom} from "../store/Atom";
 
-// ✅ 페이드인 애니메이션 정의
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -60,7 +59,7 @@ const MainPage = () => {
   const [hitingData, setHitingData] = useAtom(hitingDataAtom);
 
   useEffect(() => {
-    if (!loading) return; // ✅ 이미 로딩된 경우 API 요청 방지
+    if (!loading) return;
 
     const fetchData = async () => {
       try {
@@ -75,7 +74,7 @@ const MainPage = () => {
     };
 
     fetchData();
-  }, [loading]); // ✅ 처음 로딩될 때만 실행
+  }, [loading]);
 
   return (
     <LayOut>

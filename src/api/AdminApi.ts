@@ -1,13 +1,11 @@
-import apiClient from "./ApiClient"; // ✅ apiClient 임포트
+import apiClient from "./ApiClient";
 
-// ✅ BlockName에 따라 다른 URL을 선택하여 데이터를 전송하는 함수
 export const sendAdminInput = async (blockName: string, inputValue: string) => {
   if (!inputValue.trim()) {
     alert("입력값을 입력해주세요.");
     return;
   }
 
-  // 🔥 JSON 문자열을 객체 배열로 변환 (단, "새로운 학기 시작하기"일 경우만 배열)
   let parsedData;
   try {
     console.log(blockName);
@@ -32,7 +30,6 @@ export const sendAdminInput = async (blockName: string, inputValue: string) => {
     return;
   }
 
-  // ✅ BlockName에 따라 API 엔드포인트를 동적으로 변경
   const apiUrl = (() => {
     switch (blockName) {
       case "새로운 학기 시작하기(막누르지마셈 초 기 화 됨)":
@@ -48,23 +45,23 @@ export const sendAdminInput = async (blockName: string, inputValue: string) => {
         return "/admin/rlaehdghks8383/event/end";
       default:
         alert("올바르지 않은 BlockName입니다.");
-        console.error(`❌ ${blockName}은 유효하지 않은 BlockName입니다.`);
+        console.error(` ${blockName}은 유효하지 않은 BlockName입니다.`);
         return;
     }
   })();
 
-  if (!apiUrl) return; // 유효하지 않은 URL일 경우 요청을 중단
+  if (!apiUrl) return;
 
   try {
     const response = await apiClient.post(apiUrl, parsedData);
 
-    console.log(`📨 ${blockName} 데이터 전송 성공:`, response);
+    console.log(`${blockName} 데이터 전송 성공:`, response);
     alert("성공적으로 전송되었습니다!");
 
     return response;
   } catch (error) {
     console.log("전송되는 데이터:", parsedData);
-    console.error(`❌ ${blockName} 데이터 전송 실패:`, error);
+    console.error(` ${blockName} 데이터 전송 실패:`, error);
     alert("데이터 전송에 실패했습니다.");
   }
 };

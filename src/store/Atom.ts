@@ -1,6 +1,5 @@
 import {atom} from "jotai";
 
-// ✅ Division 및 Streak 데이터 타입 정의
 export interface DivData {
   handle: string;
   totalHiting: number;
@@ -22,7 +21,6 @@ export interface EventData {
   eventHiting: number;
 }
 
-// ✅ API에서 가져온 데이터를 저장할 타입
 export interface HitingDataState {
   div1List: DivData[];
   div2List: DivData[];
@@ -31,7 +29,6 @@ export interface HitingDataState {
   eventList: EventData[];
 }
 
-// ✅ Jotai Atom 상태 관리
 export const loadingAtom = atom<boolean>(true);
 export const errorAtom = atom<string | null>(null);
 export const hitingDataAtom = atom<HitingDataState>({
@@ -41,7 +38,5 @@ export const hitingDataAtom = atom<HitingDataState>({
   streakList: [],
   eventList: [],
 });
-
-// ✅ 선택된 Div 및 핸들 상태
 
 export const handleAtom = atom<string>("");

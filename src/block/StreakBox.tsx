@@ -39,12 +39,11 @@ const Individuals = styled.div`
 `;
 
 const StreakBox = () => {
-  const [hitingData] = useAtom(hitingDataAtom); // ✅ 전역 상태에서 데이터 가져오기
-  const [loading] = useAtom(loadingAtom); // ✅ 로딩 상태 가져오기
+  const [hitingData] = useAtom(hitingDataAtom);
+  const [loading] = useAtom(loadingAtom);
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 480);
 
-  // ✅ 화면 크기 변경 감지
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 480);
@@ -54,7 +53,6 @@ const StreakBox = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // ✅ streakList에서 최대 6개만 가져오기 (모바일은 4개)
   const streakList = hitingData.streakList.slice(0, 6) || [];
   const displayedBlocks = isMobile ? streakList.slice(0, 4) : streakList;
 

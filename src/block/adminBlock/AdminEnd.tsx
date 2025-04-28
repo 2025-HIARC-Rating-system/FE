@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {AdminExplain} from "../../ui/AdminExplain";
 import apiClient from "../../api/ApiClient";
+import Color from "../../ui/Color";
 const Wrapper = styled.div`
   border-bottom: 1px solid black;
 `;
@@ -23,6 +24,9 @@ const Button = styled.button`
   padding: 12px;
   margin-bottom: 41px;
   cursor: pointer;
+  &:hover {
+    background-color: ${Color.primary};
+  }
 `;
 
 const AdminEnd = ({endName}: {endName: string}) => {

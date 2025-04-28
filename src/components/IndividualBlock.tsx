@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   border-radius: 16px;
   min-width: 224px;
-  /* ✅ 480px 이하일 때 width를 284px로 변경 */
+
   @media (max-width: 480px) {
     width: 284px;
     min-width: 284px;
@@ -49,10 +49,10 @@ const Border = styled.div<{$borderColor: string}>`
   flex-wrap: nowrap;
   margin-bottom: 3px;
   height: 20px;
-  white-space: nowrap; /* ✅ 텍스트 줄바꿈 방지 */
-  overflow: hidden; /* ✅ 넘치는 텍스트 숨김 */
-  text-overflow: ellipsis; /* ✅ 너무 길면 "..." 표시 */
-  max-width: 90px; /* ✅ 최대 너비 제한 (조정 가능) */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90px;
 `;
 
 const Borders = styled.div`
@@ -89,10 +89,10 @@ const IndividualBlock = ({
   totalStreak: number;
   startDate: string;
 }) => {
-  const navigate = useNavigate(); // ✅ `useNavigate()` 사용
+  const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/search?handle=${handle}`); // ✅ 클릭하면 `/search?handle=아이디`로 이동
+    navigate(`/search?handle=${handle}`);
   };
   const handleDisplay = handle.length > 8 ? handle.slice(0, 8) + "..." : handle;
 

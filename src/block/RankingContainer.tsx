@@ -2,7 +2,7 @@ import {useState, useEffect} from "react";
 import styled from "styled-components";
 import RankingContainerExplainBar from "../components/RankingContainerExplainBar";
 import RankingEntity from "../components/RankingEntity";
-import {fetchRankingData} from "../api/RanikingApi"; // ✅ API 모듈 가져오기
+import {fetchRankingData} from "../api/RanikingApi";
 
 const Wrapper = styled.div`
   width: 673px;
@@ -30,7 +30,7 @@ const RankingContiner = ({selected}: {selected: number}) => {
   useEffect(() => {
     const loadRankingData = async () => {
       try {
-        const data = await fetchRankingData(selected); // ✅ API 모듈 사용
+        const data = await fetchRankingData(selected);
         setRankingData(data);
       } catch (err) {
         setError(err instanceof Error ? err.message : "알 수 없는 오류 발생");
