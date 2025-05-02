@@ -2,6 +2,8 @@ import {useState} from "react";
 import LayOut from "../ui/Layout";
 import styled from "styled-components";
 import {sendAdminLogin} from "../api/AdminLogin";
+import {useNavigate} from "react-router-dom";
+
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
@@ -33,6 +35,7 @@ const Wrapper = styled.div`
 `;
 
 export const AdminLoginPage = () => {
+  const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [capsLockOn, setCapsLockOn] = useState(false);
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -41,12 +44,17 @@ export const AdminLoginPage = () => {
 
   const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
     setCapsLockOn(e.getModifierState("CapsLock"));
+    if (e.key === "Enter") {
+      handleLogin();
+    }
   };
 
   const handleLogin = async () => {
     try {
       await sendAdminLogin(password);
+      localStorage.setItem("isAdmin", "true");
       alert("로그인 성공");
+      navigate("/admin");
     } catch (error) {
       alert("로그인 실패");
       console.log("오류내용: ", error);
