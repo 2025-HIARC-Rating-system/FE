@@ -34,15 +34,15 @@ export const sendAdminInput = async (blockName: string, inputValue: string) => {
     switch (blockName) {
       case "새로운 학기 시작하기(막누르지마셈 초 기 화 됨)":
         console.log("새로운학기시작하기에 보낼게");
-        return "/admin/rlaehdghks8383/reset/term";
+        return "/admin/reset/term";
       case "새로운 시즌 시작하기":
-        return "/admin/rlaehdghks8383/season/new";
+        return "/admin/season/new";
       case "현재 시즌 중도 마무리":
-        return "/admin/rlaehdghks8383/season/end";
+        return "/admin/season/end";
       case "새로운 이벤트 시작하기":
-        return "/admin/rlaehdghks8383/event/new";
+        return "/admin/event/new";
       case "현재 이벤트 중도 마무리":
-        return "/admin/rlaehdghks8383/event/end";
+        return "/admin/event/end";
       default:
         alert("올바르지 않은 BlockName입니다.");
         console.error(` ${blockName}은 유효하지 않은 BlockName입니다.`);
