@@ -36,8 +36,15 @@ const AdminEnd = ({endName}: {endName: string}) => {
   } else url = "event";
   const handleButtonClick = async () => {
     try {
+      const token = localStorage.getItem("accessToken");
       const response = await apiClient.post(
-        `admin/rlaehdghks8383/reset/${url}`
+        `admin/reset/${url}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       console.log("요청성공", response);
       alert("초기화에 성공하였습니다.");
