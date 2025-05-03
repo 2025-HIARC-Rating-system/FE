@@ -1,9 +1,9 @@
-import apiClient from "./ApiClient";
-export const sendAdminLogin = async (password: string): Promise<void> => {
-  console.log(password);
-  await apiClient.post(
-    "/auth/login",
-    {handle: "brayden", password: password},
-    {withCredentials: true}
-  );
+import axios from "axios";
+
+export const sendAdminLogin = async (password: string): Promise<string> => {
+  const res = await axios.post("https://hi-rating.co.kr/auth/login", {
+    handle: "brayden",
+    password: password,
+  });
+  return res.data.accessToken;
 };

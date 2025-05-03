@@ -52,8 +52,18 @@ export const sendAdminInput = async (blockName: string, inputValue: string) => {
 
   if (!apiUrl) return;
 
+  const accessToken = localStorage.getItem("accessToken");
+  if (!accessToken) {
+    alert("다시 로그인 해주세요");
+    window.location.href = "/admin/login";
+  }
+
   try {
-    const response = await apiClient.post(apiUrl, parsedData);
+    const response = await apiClient.post(apiUrl, parsedData, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
 
     console.log(`${blockName} 데이터 전송 성공:`, response);
     alert("성공적으로 전송되었습니다!");
