@@ -21,7 +21,7 @@ const AdminPage = () => {
       <HistroyCheck />
       <AdminInput BlockName="새로운 학기 시작하기(막누르지마셈 초 기 화 됨)" />
       <AdminInput BlockName="새로운 시즌 시작하기" />
-      <AdminInput BlockName="현재 시즌 종료일 수정" />
+      <AdminInput BlockName="현재 시즌 중도 마무리" />
       <AdminInput BlockName="새로운 이벤트 시작하기" />
       <AdminInput BlockName="현재 이벤트 종료일 수정" />
       <AdminEnd endName="시즌 끝내기 (점수 초기화)" />
