@@ -51,8 +51,8 @@ export const AdminLoginPage = () => {
 
   const handleLogin = async () => {
     try {
-      await sendAdminLogin(password);
-      localStorage.setItem("isAdmin", "true");
+      const token = await sendAdminLogin(password);
+      localStorage.setItem("accessToken", token);
       alert("로그인 성공");
       navigate("/admin");
     } catch (error) {
