@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {AdminExplain} from "../../ui/AdminExplain";
-import apiClient from "../../api/ApiClient";
+
 import Color from "../../ui/Color";
 import {resetAdminData} from "../../api/AdminApi";
 const Wrapper = styled.div`
@@ -31,10 +31,6 @@ const Button = styled.button`
 `;
 
 const AdminEnd = ({endName}: {endName: string}) => {
-  let url;
-  if (endName === "시즌 끝내기 (점수 초기화)") {
-    url = "season";
-  } else url = "event";
   const handleButtonClick = async () => {
     try {
       const type = endName === "시즌 끝내기 (점수 초기화)" ? "season" : "event";
