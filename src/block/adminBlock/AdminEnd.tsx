@@ -2,6 +2,7 @@ import styled from "styled-components";
 import {AdminExplain} from "../../ui/AdminExplain";
 import apiClient from "../../api/ApiClient";
 import Color from "../../ui/Color";
+import {resetAdminData} from "../../api/AdminApi";
 const Wrapper = styled.div`
   border-bottom: 1px solid black;
 `;
@@ -36,20 +37,10 @@ const AdminEnd = ({endName}: {endName: string}) => {
   } else url = "event";
   const handleButtonClick = async () => {
     try {
-      const token = localStorage.getItem("accessToken");
-      const response = await apiClient.post(
-        `admin/reset/${url}`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      console.log("요청성공", response);
+      const type = endName === "시즌 끝내기 (점수 초기화)" ? "season" : "event";
+      resetAdminData(type);
       alert("초기화에 성공하였습니다.");
     } catch (error) {
-      console.log("실패", error);
       alert("실패!!!!!!");
     }
   };
