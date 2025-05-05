@@ -1,5 +1,6 @@
 import apiClient from "./ApiClient";
 
+//admin 페이지 블록별 api,
 export const sendAdminInput = async (blockName: string, inputValue: string) => {
   if (!inputValue.trim()) {
     alert("입력값을 입력해주세요.");
@@ -13,7 +14,7 @@ export const sendAdminInput = async (blockName: string, inputValue: string) => {
       parsedData = JSON.parse(inputValue);
       console.log(parsedData);
       if (!Array.isArray(parsedData)) {
-        throw new Error("올바른 JSON 배열이 아닙니다. 여기까진옴?");
+        throw new Error("올바른 JSON 배열이 아닙니다.");
       }
     } else if (blockName === "현재 시즌 중도 마무리") {
       parsedData = inputValue;
@@ -33,7 +34,6 @@ export const sendAdminInput = async (blockName: string, inputValue: string) => {
   const apiUrl = (() => {
     switch (blockName) {
       case "새로운 학기 시작하기(막누르지마셈 초 기 화 됨)":
-        console.log("새로운학기시작하기에 보낼게");
         return "/admin/reset/term";
       case "새로운 시즌 시작하기":
         return "/admin/season/new";
@@ -51,7 +51,7 @@ export const sendAdminInput = async (blockName: string, inputValue: string) => {
   })();
 
   if (!apiUrl) return;
-
+  //헤더에 토큰 넣는 로직이여~
   const accessToken = localStorage.getItem("accessToken");
   if (!accessToken) {
     alert("다시 로그인 해주세요");
@@ -74,4 +74,29 @@ export const sendAdminInput = async (blockName: string, inputValue: string) => {
     console.error(` ${blockName} 데이터 전송 실패:`, error);
     alert("데이터 전송에 실패했습니다.");
   }
+};
+
+//시즌 이벤트 초기화 api
+export const resetAdminData = async (type: "season" | "event") => {
+  const token = localStorage.getItem("accessToken");
+  return await apiClient.post(
+    `/admin/reset/${type}`,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+};
+
+//확인하기 api 들
+
+export const checkAdminApi = async (
+  type: "recent-season" | "recent-event" | "date"
+) => {
+  const token = localStorage.getItem("accessToken");
+  return await apiClient.get(`/admin/${type}`, {
+    headers: {Authorization: `Bearer ${token}`},
+  });
 };
