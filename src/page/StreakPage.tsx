@@ -122,7 +122,7 @@ const StreakPage = () => {
                     handle={streak.handle}
                     tier={streak.tier}
                     div={streak.div}
-                    seasonStreak={streak.totalStreak}
+                    seasonStreak={streak.seasonStreak}
                     seasonTotal={seasonTotal}
                     totalStreak={streak.totalStreak}
                     startDate={streak.startDate}

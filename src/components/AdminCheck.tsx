@@ -35,7 +35,7 @@ export const AdminCheck = ({
   const buttonClick = async () => {
     try {
       const response = await checkAdminApi(name);
-      setModalContent(JSON.stringify(response.data, null, 2));
+      setModalContent(JSON.stringify(response.data.data, null, 2));
       setIsModalOpen(true);
     } catch (error) {
       console.error("오류...", error);
