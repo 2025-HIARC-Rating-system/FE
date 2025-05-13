@@ -1,4 +1,6 @@
-export const AdminExplain: Record<string, string> = {
+import React from "react";
+
+const explainTexts: Record<string, string> = {
   "새로운 학기 시작하기(막누르지마셈 초 기 화 됨)":
     "학회원 정보를 형식에 맞게 list로 입력하세요(GPT ㄱㄱ) 정보가 초기화 되고 일부는 지난시즌 기록으로 넘어갑니다",
   "새로운 시즌 시작하기": "시즌 기간을 형식에 맞게 입력하세요.",
@@ -14,24 +16,10 @@ export const AdminExplain: Record<string, string> = {
   "HITING값 직접 수정하기": `hiting 점수를 직접 수정할 수 있습니다. 푼 문제수는 수정되지 않습니다.\n그래도 자주 사용X`,
 };
 
-export const AdminWarn: Record<string, string> = {
-  "새로운 학기 시작하기(막누르지마셈 초 기 화 됨)": "",
-  "새로운 시즌 시작하기": "주의: 현재 시점보다 미래의 시간만 가능",
-  "현재 시즌 중도 마무리":
-    "주의: 현재 시점보다 미래의 시간만 가능, 시작 시간 변경은 불가능",
-  "새로운 이벤트 시작하기":
-    "주의: 현재 시점보다 미래의 시간만 가능, 2배 이벤트와 티어 이벤트 동시에 안됨",
-  "현재 이벤트 중도 마무리":
-    "주의: 현재 시점보다 미래의 시간만 가능, 시작 시간 변경은 불가능",
-};
+interface AdminExplainProps {
+  blockName: string;
+}
 
-export const Ex: Record<string, string> = {
-  "새로운 학기 시작하기(막누르지마셈 초 기 화 됨)": `ex.\n\n[\n{"name":"김동환", "handle":"Brayden"},\n{"name":"이호재","handle":"ghwo336"}\n]`,
-  "새로운 시즌 시작하기": `ex.\n\n{\n"start":"2025-03-02T02:39:36.342Z",\n "end":"2025-03-04T02:39:36.342Z"\n}`,
-  "현재 시즌 중도 마무리": `ex.\n\n2025-03-02T02:39:36.342Z`,
-  "새로운 이벤트 시작하기": `ex.\n\n{\n"start" : "2025-03-02T02:39:36.342Z",\n "end":"2025-03-04T02:39:36.342Z",\n"eventCategory": "DOUBLE_EVENT",\n "tag":"false"\n}\n\n *eventCategory는 DOUBLE_EVENT,TAG_EVENT 중하나만 입력\n *tag:TagEvent 중일때만 true`,
-  "현재 이벤트 중도 마무리": `ex.\n\n{"2025-03-02T02:39:36.342Z"}`,
-  "현재 푼 문제 수 확인하기": `ex.ghwo336`,
-  "현재 HITING값 확인하기": `ex.ghwo336`,
-  "HITING값 직접 수정하기": `\n1. 핸들 입력\nex.ghwo336\n 2.현재 하이팅 점수에서 더하고 싶은 값을 입력\nex.\n{\n"totalHiting":0,\n"seasonHiting":2,\n"dailyHiting":2,\n,"eventHiting:0\n}`,
+export const AdminExplain: React.FC<AdminExplainProps> = ({blockName}) => {
+  return <div>{explainTexts[blockName] || ""}</div>;
 };

@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import {checkAdminName} from "../ui/CheckAdminName";
-import {checkAdminApi} from "../api/AdminApi";
+import {checkAdminName} from "../../ui/CheckAdminName";
+import {checkAdminApi} from "../../api/AdminApi";
 import {useState} from "react";
-import {Modal} from "./Modal";
+import {Modal} from "../Modal";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
