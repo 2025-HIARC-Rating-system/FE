@@ -1,5 +1,9 @@
 import styled from "styled-components";
 import Color from "../../ui/Color";
+import {useState} from "react";
+import {getAdminHandleStats} from "../../api/AdminApi";
+import {blockNameToCode} from "../../ui/CheckAdminName";
+import {Modal} from "../Modal";
 const Wrapper = styled.div`
   overflow: visible;
 `;
@@ -11,7 +15,7 @@ const InputBox = styled.div`
   gap: 40px;
   align-items: center;
 `;
-const Input = styled.textarea`
+const Input = styled.input`
   height: 30px;
   width: 70%;
   background-color: inherit;
@@ -37,12 +41,47 @@ const Button = styled.button`
 `;
 
 export const AdminInputBox = ({blockName}: {blockName: string}) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState("");
+  const [handle, setHandle] = useState("");
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setHandle(e.target.value);
+  };
+  const onClick = async () => {
+    try {
+      console.log(handle);
+      const response = await getAdminHandleStats(
+        blockNameToCode[blockName] as "solved-level" | "hiting",
+        handle
+      );
+      if (response) {
+        setModalContent(JSON.stringify(response.data));
+        setIsModalOpen(true);
+      } else {
+        setModalContent("핸들 다시 입력하셈 ㅇㅇ");
+        setIsModalOpen(true);
+      }
+    } catch (err) {
+      setModalContent("error 개발팀 문의");
+      setIsModalOpen(true);
+      console.log(err);
+    }
+  };
   return (
     <Wrapper>
       <InputBox>
-        <Input />
-        <Button>입력하기</Button>
+        <Input
+          placeholder="핸들을 입력하세요"
+          value={handle}
+          onChange={handleInputChange}
+        />
+        <Button onClick={onClick}>입력하기</Button>
       </InputBox>
+      {isModalOpen ? (
+        <Modal content={modalContent} onClose={() => setIsModalOpen(false)} />
+      ) : (
+        ""
+      )}
     </Wrapper>
   );
 };

@@ -100,3 +100,22 @@ export const checkAdminApi = async (
     headers: {Authorization: `Bearer ${token}`},
   });
 };
+
+// 핸들별 현재 값들 확인하는 api
+
+export const getAdminHandleStats = async (
+  type: "hiting" | "solved-level",
+  handle: string
+) => {
+  const token = localStorage.getItem("accessToken");
+  try {
+    const res = await apiClient.get(`/admin/${type}`, {
+      headers: {Authorization: `Bearer ${token}`},
+      params: {handle},
+    });
+    return res.data;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
+};
