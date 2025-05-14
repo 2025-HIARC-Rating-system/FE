@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {AdminCheck} from "../../components/AdminCheck";
+import {AdminCheck} from "../../components/adminComponents/AdminCheck";
 
 const Wrapper = styled.div`
   display: flex;
