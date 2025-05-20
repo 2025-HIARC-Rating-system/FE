@@ -20,7 +20,7 @@ solved.ac에서 일정 티어가 넘어가면 더 이상 점수가 오르지 않
 ## 🛠 기술 스택
 
 - **언어**: TypeScript
-- **프레임워크**: React
+- **라이브러리**: React
 - **상태관리**: useState, useEffect, jotai(전역)
 - **스타일링**: Styled Components (CSS-in-JS)
 - **API 통신**: Axios
