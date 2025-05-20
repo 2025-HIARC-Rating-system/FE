@@ -22,6 +22,7 @@ const Explain = styled.div`
 `;
 const EX = styled.div`
   font-size: 12px;
+  white-space: pre-wrap;
 `;
 
 const InputBox = styled.div`
