@@ -1,12 +1,11 @@
 import apiClient from "./ApiClient";
 
-//admin 페이지 블록별 api,
+//admin 페이지 블록별 api
 export const sendAdminInput = async (blockName: string, inputValue: string) => {
   if (!inputValue.trim()) {
     alert("입력값을 입력해주세요.");
     return;
   }
-
   let parsedData;
   try {
     console.log(blockName);
@@ -43,6 +42,8 @@ export const sendAdminInput = async (blockName: string, inputValue: string) => {
         return "/admin/event/new";
       case "현재 이벤트 중도 마무리":
         return "/admin/event/end";
+      case "HITING값 확인하기":
+        return "/admin/new-solved";
       default:
         alert("올바르지 않은 BlockName입니다.");
         console.error(` ${blockName}은 유효하지 않은 BlockName입니다.`);
@@ -51,23 +52,11 @@ export const sendAdminInput = async (blockName: string, inputValue: string) => {
   })();
 
   if (!apiUrl) return;
-  //헤더에 토큰 넣는 로직이여~
-  const accessToken = localStorage.getItem("accessToken");
-  if (!accessToken) {
-    alert("다시 로그인 해주세요");
-    window.location.href = "/admin/login";
-  }
 
   try {
-    const response = await apiClient.post(apiUrl, parsedData, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-
+    const response = await apiClient.post(apiUrl, parsedData);
     console.log(`${blockName} 데이터 전송 성공:`, response);
     alert("성공적으로 전송되었습니다!");
-
     return response;
   } catch (error) {
     console.log("전송되는 데이터:", parsedData);
@@ -78,16 +67,7 @@ export const sendAdminInput = async (blockName: string, inputValue: string) => {
 
 //시즌 이벤트 초기화 api
 export const resetAdminData = async (type: "season" | "event") => {
-  const token = localStorage.getItem("accessToken");
-  return await apiClient.post(
-    `/admin/reset/${type}`,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+  return await apiClient.post(`/admin/reset/${type}`, {});
 };
 
 //확인하기 api 들
@@ -95,10 +75,7 @@ export const resetAdminData = async (type: "season" | "event") => {
 export const checkAdminApi = async (
   type: "recent-season" | "recent-event" | "date"
 ) => {
-  const token = localStorage.getItem("accessToken");
-  return await apiClient.get(`/admin/${type}`, {
-    headers: {Authorization: `Bearer ${token}`},
-  });
+  return await apiClient.get(`/admin/${type}`);
 };
 
 // 핸들별 현재 값들 확인하는 api
@@ -107,10 +84,8 @@ export const getAdminHandleStats = async (
   type: "hiting" | "solved-level",
   handle: string
 ) => {
-  const token = localStorage.getItem("accessToken");
   try {
     const res = await apiClient.get(`/admin/${type}`, {
-      headers: {Authorization: `Bearer ${token}`},
       params: {handle},
     });
     return res.data;

@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   border-bottom: 1px solid black;
 `;
 
-const HistroyCheck = () => {
+const HistoryCheck = () => {
   return (
     <Wrapper>
       <AdminCheck name="recent-season" />
@@ -17,4 +17,4 @@ const HistroyCheck = () => {
   );
 };
 
-export default HistroyCheck;
+export default HistoryCheck;
